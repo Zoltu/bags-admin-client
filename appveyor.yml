@@ -1,0 +1,31 @@
+version: '{build}'
+clone_depth: 1
+environment:
+  JSPM_GITHUB_AUTH_TOKEN:
+    secure: ilBgSEtx8LwJaYcBW6dnzbrR8TT6RzdPjreWq49gyRorUkRy2N1rywuLimAXO8Q4XKvH15dUR0cJBXooHwxkgqo/sOY5D+bJLO6NmGHYJmY=
+install:
+- npm install
+- node_modules\.bin\jspm config registries.bower.handler jspm-bower-endpoint
+- node_modules\.bin\jspm config registries.bower.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.bower.timeouts.build 300
+- node_modules\.bin\jspm config registries.github.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.github.timeouts.build 300
+- node_modules\.bin\jspm config registries.github.auth %JSPM_GITHUB_AUTH_TOKEN%
+- node_modules\.bin\jspm config registries.npm.timeouts.lookup 300
+- node_modules\.bin\jspm config registries.npm.timeouts.build 300
+- node_modules\.bin\jspm install
+cache:
+- node_modules -> package.json
+- jspm_packages -> package.json
+build_script:
+- node_modules/.bin/jspm bundle source/**/*.ts + aurelia-bootstrapper + aurelia-binding + aurelia-dependency-injection + aurelia-event-aggregator + aurelia-framework + aurelia-history + aurelia-history-browser + aurelia-loader + aurelia-loader-default + aurelia-logging + aurelia-logging-console + aurelia-metadata + aurelia-pal + aurelia-pal-browser + aurelia-path + aurelia-polyfills + aurelia-route-recognizer + aurelia-router + aurelia-task-queue + aurelia-templating + aurelia-templating-binding + aurelia-templating-resources + aurelia-templating-router --minify
+artifacts:
+- path: dist
+deploy:
+- provider: WebDeploy
+  server: https://zoltu-bags-admin-client.scm.azurewebsites.net:443/msdeploy.axd?site=zoltu-bags-admin-client
+  website: zoltu-bags-admin-client
+  username: $zoltu-bags-admin-client
+  password:
+    secure: G1JjP0DdHLGBO3KZTiI+hFtHWZDAo077L2GeW2AxWiUPeYzYI1bfc4Tx21jKnADkck24jWSDEno6BH3D4g0ZJg==
+  artifact: dist.zip

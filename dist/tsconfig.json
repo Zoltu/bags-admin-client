@@ -1,0 +1,33 @@
+{
+    "version": "1.8.7",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "system",
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "inlineSourceMap": true,
+        "noImplicitAny": true,
+        "noEmit": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "formatCodeOptions": {
+        "indentSize": 4,
+        "tabSize": 4,
+        "newLineCharacter": "\r\n",
+        "convertTabsToSpaces": false,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    },
+    "compileOnSave": false
+}
