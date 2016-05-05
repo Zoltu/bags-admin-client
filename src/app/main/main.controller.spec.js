@@ -1,7 +1,7 @@
 describe('controllers', () => {
   let vm;
 
-  beforeEach(angular.mock.module('generatorGulpAngular'));
+  beforeEach(angular.mock.module('bags-app'));
 
   beforeEach(inject(($controller, webDevTec, toastr) => {
     spyOn(webDevTec, 'getTec').and.returnValue([{}, {}, {}, {}, {}]);
