@@ -1,4 +1,4 @@
-export function config ($logProvider, toastrConfig) {
+export function config ($logProvider, toastrConfig, $mdThemingProvider) {
   'ngInject';
   // Enable log
   $logProvider.debugEnabled(true);
@@ -9,4 +9,8 @@ export function config ($logProvider, toastrConfig) {
   toastrConfig.positionClass = 'toast-top-right';
   toastrConfig.preventDuplicates = true;
   toastrConfig.progressBar = true;
+
+  // Material Theming
+  $mdThemingProvider.theme('default')
+  .primaryPalette('blue-grey');
 }

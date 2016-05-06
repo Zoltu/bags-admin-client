@@ -45,6 +45,7 @@ angular.module('bags-app', [
   'ui.router',
   'ngMaterial',
   'toastr',
+  'md.data.table',
   tagModuleName,
   categoryModuleName,
   productModuleName
