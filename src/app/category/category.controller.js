@@ -1,7 +1,9 @@
 export class CategoryController {
-  constructor () {
+  constructor (categoryModelService) {
     'ngInject';
-    
+
+    categoryModelService.getVocabluary();
+
     this.onInit();
   }
 
