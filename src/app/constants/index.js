@@ -1,0 +1,1 @@
+export {default as baseParams} from './baseParams.constant';

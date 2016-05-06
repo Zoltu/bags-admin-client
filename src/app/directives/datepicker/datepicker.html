@@ -1,0 +1,49 @@
+<ng-form name="vm.formSave">
+  <div layout="column">
+    <div layout="row">
+      <md-input-container flex>
+        <md-select ng-model="vm.formData.day" name="day" ng-change="vm.setBirthday()">
+          <md-option ng-repeat="day in vm.days">{{day}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container flex>
+        <md-select ng-model="vm.formData.month" name="month" ng-change="vm.setDayInMonth()">
+          <md-option ng-repeat="month in vm.months">{{month}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container flex>
+        <md-select ng-model="vm.formData.year" name="year" ng-change="vm.setDayInMonth()">
+          <md-option ng-repeat="year in vm.years">{{year}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div layout="row" ng-hide="hideHour">
+      <md-input-container flex>
+        <label>Hour</label>
+        <md-select ng-model="vm.formData.hour" name="hour" ng-change="vm.setDayInMonth()">
+          <md-option ng-repeat="hour in vm.hours">{{hour}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container flex>
+        <label>Minute</label>
+        <md-select ng-model="vm.formData.minute" name="minute" ng-change="vm.setDayInMonth()">
+          <md-option ng-repeat="minute in vm.minutes">{{minute}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container flex>
+        <md-select ng-model="vm.formData.meridiem" name="meridiem" ng-change="vm.setDayInMonth()">
+          <md-option ng-repeat="meridiem in vm.meridiem">{{meridiem}}</md-option>
+        </md-select>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="center center">
+      <md-checkbox ng-model="hideHour" class="md-primary">
+        I'm not sure
+      </md-checkbox>
+    </div>
+  </div>
+</ng-form>
