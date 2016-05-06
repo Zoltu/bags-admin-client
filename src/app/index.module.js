@@ -10,7 +10,26 @@ import {NavbarDirective} from '../app/components/navbar/navbar.directive';
 import {MalarkeyDirective} from '../app/components/malarkey/malarkey.directive';
 import {SidebarMenuComponent} from '../app/components/sidebarMenu/sidebarMenu.component';
 
-angular.module('bags-app', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ngMaterial', 'toastr'])
+// MODULES //
+import {moduleName as tagModuleName} from './tag/index'
+import {moduleName as categoryModuleName} from './category/index'
+import {moduleName as productModuleName} from './product/index'
+
+angular.module('bags-app', [
+  'ngAnimate',
+  'ngCookies',
+  'ngTouch',
+  'ngSanitize',
+  'ngMessages',
+  'ngAria',
+  'ngResource',
+  'ui.router',
+  'ngMaterial',
+  'toastr',
+  tagModuleName,
+  categoryModuleName,
+  productModuleName
+])
 .constant('malarkey', malarkey)
 .constant('moment', moment)
 .config(config)
