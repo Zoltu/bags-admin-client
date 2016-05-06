@@ -1,16 +1,35 @@
-# Development
-1. `npm install`
-1. `npm start`
-1. Browse to `http://localhost:8080`
+### Install
+
+##### Install required tools `yo`, `gulp` and `bower`:
+```
+npm install -g yo gulp bower
+```
+
+##### Install `generator-gulp-angular`:
+```
+npm install -g generator-gulp-angular
+```
+
+##### Install `node_modules`:
+```
+npm install
+```
+
+##### Install `bower_components`:
+```
+bower install
+```
 
 
-# Maintenance
+### Run
 
-## Update JSPM
-`npm install --save-dev jspm`
+##### Run `server`
+```
+gulp serve
+```
 
-## Update Aurelia
-`node_modules/.bin/jspm install aurelia-bootstrapper`
+##### Possible problems with local environment
+```
+There is some known problem with estraverse module during install on Linux. Please contact me if you have something like that.
+```
 
-## Update SystemJS and TypeScript
-`node_modules/.bin/jspm dl-loader --latest`

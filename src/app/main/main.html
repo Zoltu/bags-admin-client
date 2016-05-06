@@ -1,0 +1,26 @@
+<section layout="row" class="wrapper">
+  <!--sidebar-->
+  <md-sidenav
+    class="md-sidenav-left"
+    md-component-id="left"
+    md-is-locked-open="true"
+    md-disable-backdrop
+    md-whiteframe="4">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">BAGS</h1>
+    </md-toolbar>
+    <sidebar-menu></sidebar-menu>
+  </md-sidenav>
+
+  <!--content-->
+  <div flex layout="column">
+    <md-toolbar class="md-theme-indigo">
+      <span class="md-toolbar-tools" layout-align="center center">TITLE</span>
+    </md-toolbar>
+    <md-content flex layout-padding>
+      <div layout="column" layout-fill layout-align="top left" class="content">
+        <div ui-view=""></div>
+      </div>
+    </md-content>
+  </div>
+</section>

@@ -1,4 +1,7 @@
-/dist/jspm_packages/
-/node_modules/
-/dist/build.js
-/dist/build.js.map
+node_modules/
+bower_components/
+coverage/
+.sass-cache/
+.idea/
+.tmp/
+dist/
