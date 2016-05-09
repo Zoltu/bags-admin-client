@@ -15,6 +15,18 @@ import {
   baseParams
 } from './constants';
 
+// SERVICES //
+import {
+  ModalService,
+  CategoryModelService,
+  ProductModelService,
+  TagModelService,
+} from './services';
+
+// // DIRECTIVES //
+// import {
+// } from './directives/index';
+
 // MODELS //
 import {
   categoryModel,
@@ -22,12 +34,6 @@ import {
   tagModel
 } from './models/index';
 
-// SERVICES //
-import {
-  CategoryModelService,
-  ProductModelService,
-  TagModelService,
-} from './services';
 
 // MODULES //
 import {moduleName as tagModuleName} from './components/tag/index'
@@ -46,6 +52,7 @@ angular.module('bags-app', [
   'ngMaterial',
   'toastr',
   'md.data.table',
+  'ngLodash',
   tagModuleName,
   categoryModuleName,
   productModuleName
@@ -62,14 +69,19 @@ angular.module('bags-app', [
 .directive('acmeMalarkey', MalarkeyDirective)
 .component('sidebarMenu', SidebarMenuComponent)
 
-// MODELS //
-.factory('categoryModel', categoryModel)
-.factory('productModel', productModel)
-.factory('tagModel', tagModel)
-
 // SERVICES //
+.service('modalService', ModalService)
 .service('githubContributor', GithubContributorService)
 .service('webDevTec', WebDevTecService)
 .service('categoryModelService', CategoryModelService)
 .service('productModelService', ProductModelService)
 .service('tagModelService', TagModelService)
+
+// DIRECTIVES //
+
+// MODELS //
+.factory('categoryModel', categoryModel)
+.factory('productModel', productModel)
+.factory('tagModel', tagModel)
+
+

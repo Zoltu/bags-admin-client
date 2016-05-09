@@ -1,22 +1,60 @@
 export class CategoryModelService {
-  constructor ($q, categoryModel) {
+  constructor ($q, lodash, modalService, categoryModel, $mdDialog) {
     'ngInject'
 
+    this.$mdDialog = $mdDialog;
     this.$q = $q;
+    this.lodash = lodash;
+    this.modalService = modalService;
     this.Model = categoryModel;
 
-    this.vocabluary = []
+    this.collection = []
   }
 
-  getVocabluary(){
-    if(this.vocabluary.length){
-      return this.$q.when(this.vocabluary);
+  getCollection(){
+    if(this.collection.length){
+      return this.$q.when(this.collection);
     }
 
     return this.Model.query().$promise
     .then((res)=>{
-      angular.copy(res, this.vocabluary);
-      return this.vocabluary;
+      angular.copy(res, this.collection);
+      return this.collection;
+    });
+  }
+
+  save(data) {
+    let action = data.id ? 'update' : 'save';
+    angular.extend(data, {
+      actionId: data.id,
+    });
+
+    return this.Model[action](data).$promise
+    .then((response) => {
+      if (action == 'save') {
+        this.collection.push(response);
+      }
+
+      return response;
+    });
+  }
+
+  remove(data){
+    if(this.lodash.isEmpty(data)){
+      return this.$q.reject(false);
+    }
+
+    let confirm = this.$mdDialog.confirm()
+    .title('Would you like to delete your category?')
+    .ok('YES')
+    .cancel('NO');
+
+    this.$mdDialog.show(confirm)
+    .then(() => {
+      return this.Model.delete(data).$promise.then((response) => {
+        this.lodash.remove(this.collection, {id: data.id});
+        return response;
+      });
     });
   }
 }

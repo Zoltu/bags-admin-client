@@ -1,8 +1,9 @@
 export class CategoryController {
-  constructor (categoryModelService) {
+  constructor (categoryModelService, categoryService) {
     'ngInject';
 
     this.categoryModelService = categoryModelService;
+    this.categoryService = categoryService;
 
     this.onInit();
   }
@@ -18,17 +19,27 @@ export class CategoryController {
       boundaryLinks: true,
 
       limitOptions: [5,10,15],
-      limit: 5,
+      limit: 10,
       page: 1,
     };
 
-    this.getCategory();
+    this.getCategories();
   }
-  
-  getCategory(){
-    this.categoryModelService.getVocabluary().then((res)=>{
+
+  getCategories(){
+    this.categoryModelService.getCollection().then((res)=>{
       this.data = res;
       return this.data;
     }).catch(console.log.bind(console));
   }
+
+  remove(data) {
+    this.categoryModelService.remove(data);
+  }
+
+  modalCreateOrUpdate(data) {
+    this.categoryService.modal(data)
+    .catch(console.log.bind(console));
+  }
+
 }
