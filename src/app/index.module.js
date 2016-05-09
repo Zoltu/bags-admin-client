@@ -60,14 +60,11 @@ angular.module('bags-app', [
 .constant('baseParams', baseParams)
 .constant('malarkey', malarkey)
 .constant('moment', moment)
+
 .config(config)
 .config(routerConfig)
 .run(runBlock)
 
-.controller('MainController', MainController)
-.directive('acmeNavbar', NavbarDirective)
-.directive('acmeMalarkey', MalarkeyDirective)
-.component('sidebarMenu', SidebarMenuComponent)
 
 // SERVICES //
 .service('modalService', ModalService)
@@ -76,6 +73,15 @@ angular.module('bags-app', [
 .service('categoryModelService', CategoryModelService)
 .service('productModelService', ProductModelService)
 .service('tagModelService', TagModelService)
+
+
+
+.controller('MainController', MainController)
+.directive('acmeNavbar', NavbarDirective)
+.directive('acmeMalarkey', MalarkeyDirective)
+.component('sidebarMenu', SidebarMenuComponent)
+
+
 
 // DIRECTIVES //
 

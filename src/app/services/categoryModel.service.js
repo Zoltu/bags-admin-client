@@ -12,10 +12,6 @@ export class CategoryModelService {
   }
 
   getCollection(){
-    if(this.collection.length){
-      return this.$q.when(this.collection);
-    }
-
     return this.Model.query().$promise
     .then((res)=>{
       angular.copy(res, this.collection);
