@@ -5,7 +5,7 @@ export function routerConfig ($stateProvider) {
   .state('product', {
     parent: 'main',
     url: 'product',
-    templateUrl: 'app/product/product.html',
+    templateUrl: 'app/components/product/product.html',
     controller: 'ProductController',
     controllerAs: 'vm'
   });

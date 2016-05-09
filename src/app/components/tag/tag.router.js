@@ -5,7 +5,7 @@ export function routerConfig ($stateProvider) {
   .state('tag', {
     parent: 'main',
     url: 'tag',
-    templateUrl: 'app/tag/tag.html',
+    templateUrl: 'app/components/tag/tag.html',
     controller: 'TagController',
     controllerAs: 'vm'
   });

@@ -5,7 +5,7 @@ export function routerConfig ($stateProvider) {
   .state('category', {
     parent: 'main',
     url: 'category',
-    templateUrl: 'app/category/category.html',
+    templateUrl: 'app/components/category/category.html',
     controller: 'CategoryController',
     controllerAs: 'vm'
   });

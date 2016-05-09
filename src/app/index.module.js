@@ -30,9 +30,9 @@ import {
 } from './services';
 
 // MODULES //
-import {moduleName as tagModuleName} from './tag/index'
-import {moduleName as categoryModuleName} from './category/index'
-import {moduleName as productModuleName} from './product/index'
+import {moduleName as tagModuleName} from './components/tag/index'
+import {moduleName as categoryModuleName} from './components/category/index'
+import {moduleName as productModuleName} from './components/product/index'
 
 angular.module('bags-app', [
   'ngAnimate',
