@@ -15,6 +15,11 @@ import {
   baseParams
 } from './constants';
 
+// DECORATORS //
+import {
+  decorateSlickDirective
+} from './decorators';
+
 // SERVICES //
 import {
   ModalService,
@@ -24,8 +29,8 @@ import {
 } from './services';
 
 // // DIRECTIVES //
-// import {
-// } from './directives/index';
+import {
+} from './directives/index';
 
 // MODELS //
 import {
@@ -53,6 +58,7 @@ angular.module('bags-app', [
   'toastr',
   'md.data.table',
   'ngLodash',
+  'slick',
   tagModuleName,
   categoryModuleName,
   productModuleName
@@ -65,6 +71,8 @@ angular.module('bags-app', [
 .config(routerConfig)
 .run(runBlock)
 
+// DECORATORS
+.config(decorateSlickDirective)
 
 // SERVICES //
 .service('modalService', ModalService)
@@ -74,20 +82,16 @@ angular.module('bags-app', [
 .service('productModelService', ProductModelService)
 .service('tagModelService', TagModelService)
 
-
-
-.controller('MainController', MainController)
+// DIRECTIVES //
 .directive('acmeNavbar', NavbarDirective)
 .directive('acmeMalarkey', MalarkeyDirective)
 .component('sidebarMenu', SidebarMenuComponent)
-
-
-
-// DIRECTIVES //
 
 // MODELS //
 .factory('categoryModel', categoryModel)
 .factory('productModel', productModel)
 .factory('tagModel', tagModel)
+
+.controller('MainController', MainController)
 
 

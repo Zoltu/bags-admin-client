@@ -1,0 +1,69 @@
+<md-dialog flex="80">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Product</h2>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <!--<create-document form-data="formData"></create-document>-->
+      <div layout="column" class="inputdemoErrorsAdvanced" ng-cloak>
+        <md-content layout-padding>
+          <form name="vm.formSave" ng-submit="vm.save()" novalidate>
+
+            <md-input-container class="md-block">
+              <label>Name</label>
+              <input ng-required="true" name="name" ng-model="vm.formData.name">
+              <div ng-messages="vm.formSave.name.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+              <label>Price</label>
+              <input ng-required="true" type="number" name="price" step="1" min="0.00" ng-model="vm.formData.price">
+              <div ng-messages="vm.formSave.price.$error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="min">Enter your price.</div>
+              </div>
+            </md-input-container>
+
+            <product-tags
+              tags="vm.formData.tags"
+              added-tags="vm.added.tags"
+              removed-tags="vm.removed.tags"
+            ></product-tags>
+
+            <fieldset class="standard">
+              <legend>Product Image Urls CRUD</legend>
+              <product-urls
+                type="img"
+                label="Image Url"
+                urls="vm.formData.image_urls"
+                added-urls="vm.added.images"
+                removed-urls="vm.removed.images"
+              ></product-urls>
+            </fieldset>
+
+            <fieldset class="standard">
+              <legend>Product Purchase Urls CRUD</legend>
+              <product-urls
+                type="url"
+                label="Purchase Url"
+                urls="vm.formData.purchase_urls"
+                added-urls="vm.added.urls"
+                removed-urls="vm.removed.urls"
+              ></product-urls>
+            </fieldset>
+
+            <div layout="row" layout-align="end center">
+              <md-button ng-click="vm.close()" class="md-raised md-primary" ng-disabled="vm.disabled">Cancel</md-button>
+              <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.disabled">Save</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </div>
+    </div>
+  </md-dialog-content>
+</md-dialog>

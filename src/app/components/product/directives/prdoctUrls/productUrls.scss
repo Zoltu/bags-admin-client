@@ -1,0 +1,43 @@
+md-table-container{
+  overflow: hidden;
+
+  .image-scroll {
+    width: 700px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    .item-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+
+
+      .img {
+        background-size: cover !important;
+        height: 100%;
+        weight: auto;
+        border: 2px solid #FFF;
+
+        &:hover{
+          .buttons{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.27);
+            height: 100%;
+            margin: 0 auto;
+            opacity: 1;
+            border: 2px solid
+          }
+        }
+
+        .buttons{
+          opacity: 0;
+        }
+      }
+
+
+    }
+  }
+}
