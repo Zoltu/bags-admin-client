@@ -15,6 +15,18 @@ import {
   baseParams
 } from './constants';
 
+// SERVICES //
+import {
+  ModalService,
+  CategoryModelService,
+  ProductModelService,
+  TagModelService,
+} from './services';
+
+// // DIRECTIVES //
+// import {
+// } from './directives/index';
+
 // MODELS //
 import {
   categoryModel,
@@ -22,17 +34,11 @@ import {
   tagModel
 } from './models/index';
 
-// SERVICES //
-import {
-  CategoryModelService,
-  ProductModelService,
-  TagModelService,
-} from './services';
 
 // MODULES //
-import {moduleName as tagModuleName} from './tag/index'
-import {moduleName as categoryModuleName} from './category/index'
-import {moduleName as productModuleName} from './product/index'
+import {moduleName as tagModuleName} from './components/tag/index'
+import {moduleName as categoryModuleName} from './components/category/index'
+import {moduleName as productModuleName} from './components/product/index'
 
 angular.module('bags-app', [
   'ngAnimate',
@@ -46,6 +52,7 @@ angular.module('bags-app', [
   'ngMaterial',
   'toastr',
   'md.data.table',
+  'ngLodash',
   tagModuleName,
   categoryModuleName,
   productModuleName
@@ -53,23 +60,34 @@ angular.module('bags-app', [
 .constant('baseParams', baseParams)
 .constant('malarkey', malarkey)
 .constant('moment', moment)
+
 .config(config)
 .config(routerConfig)
 .run(runBlock)
+
+
+// SERVICES //
+.service('modalService', ModalService)
+.service('githubContributor', GithubContributorService)
+.service('webDevTec', WebDevTecService)
+.service('categoryModelService', CategoryModelService)
+.service('productModelService', ProductModelService)
+.service('tagModelService', TagModelService)
+
+
 
 .controller('MainController', MainController)
 .directive('acmeNavbar', NavbarDirective)
 .directive('acmeMalarkey', MalarkeyDirective)
 .component('sidebarMenu', SidebarMenuComponent)
 
+
+
+// DIRECTIVES //
+
 // MODELS //
 .factory('categoryModel', categoryModel)
 .factory('productModel', productModel)
 .factory('tagModel', tagModel)
 
-// SERVICES //
-.service('githubContributor', GithubContributorService)
-.service('webDevTec', WebDevTecService)
-.service('categoryModelService', CategoryModelService)
-.service('productModelService', ProductModelService)
-.service('tagModelService', TagModelService)
+

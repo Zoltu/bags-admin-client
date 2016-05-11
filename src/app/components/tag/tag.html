@@ -5,8 +5,7 @@
         <div class="md-toolbar-tools">
           <span>Categories</span>
           <div flex></div>
-          <md-button class="md-raised" ng-click="vm.modalCreateDocument()">Create</md-button>
-          <md-button class="md-raised md-warn" ng-click="vm.remove(vm.selected)">Delete</md-button>
+          <md-button class="md-raised" ng-click="vm.modalCreateOrUpdate()">Create</md-button>
         </div>
       </md-toolbar>
 
@@ -24,7 +23,10 @@
               <th md-column md-order-by="name">
                 <span>NAME</span>
               </th>
-              <!--<th md-column></th>-->
+              <th md-column md-order-by="category.name">
+                <span>CATEGORY</span>
+              </th>
+              <th md-column></th>
             </tr>
           </thead>
           <tbody md-body>
@@ -35,8 +37,9 @@
               <td md-cell>{{($index + 1 - vm.gridOptions.limit) + (vm.gridOptions.page * vm.gridOptions.limit)}}</td>
               <td md-cell>{{item.id}}</td>
               <td md-cell>{{item.name}}</td>
+              <td md-cell>{{item.category.name}}</td>
               <td md-cell class="control-buttons">
-                <md-button ng-click="vm.modalCreateDocument(item)" aria-label="edit">
+                <md-button ng-click="vm.modalCreateOrUpdate(item)" aria-label="edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
                 </md-button>
                 <md-button ng-click="vm.remove(item)" aria-label="remove">

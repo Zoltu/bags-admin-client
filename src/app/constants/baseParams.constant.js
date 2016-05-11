@@ -1,3 +1,3 @@
 export default {
-  apiUrl: 'http://zoltu-bags-middleware.azurewebsites.net/api/'
+  apiUrl: 'https://zoltu-bags-middleware.azurewebsites.net/api/'
 };
