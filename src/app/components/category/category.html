@@ -17,9 +17,9 @@
               <th md-column>
                 <span>#</span>
               </th>
-              <th md-column>
-                <span>ID</span>
-              </th>
+              <!--<th md-column>-->
+                <!--<span>ID</span>-->
+              <!--</th>-->
               <th md-column md-order-by="name">
                 <span>NAME</span>
               </th>
@@ -32,7 +32,7 @@
               md-select-id="{{$index}}"
               ng-repeat="item in vm.data | orderBy: vm.gridOptions.order | limitTo: vm.gridOptions.limit : (vm.gridOptions.page -1) * vm.gridOptions.limit">
               <td md-cell>{{($index + 1 - vm.gridOptions.limit) + (vm.gridOptions.page * vm.gridOptions.limit)}}</td>
-              <td md-cell>{{item.id}}</td>
+              <!--<td md-cell>{{item.id}}</td>-->
               <td md-cell>{{item.name}}</td>
               <td md-cell class="control-buttons">
                 <md-button ng-click="vm.modalCreateOrUpdate(item)" aria-label="edit">
@@ -47,14 +47,14 @@
         </table>
       </md-table-container>
 
-      <md-table-pagination
-        md-limit="vm.gridOptions.limit"
-        md-limit-options="vm.gridOptions.limitOptions"
-        md-page="vm.gridOptions.page"
-        md-total="{{vm.data.length}}"
-        md-page-select="vm.gridOptions.pageSelect"
-        md-boundary-links="vm.gridOptions.boundaryLinks"
-      ></md-table-pagination>
+      <!--<md-table-pagination-->
+        <!--md-limit="vm.gridOptions.limit"-->
+        <!--md-limit-options="vm.gridOptions.limitOptions"-->
+        <!--md-page="vm.gridOptions.page"-->
+        <!--md-total="{{vm.data.length}}"-->
+        <!--md-page-select="vm.gridOptions.pageSelect"-->
+        <!--md-boundary-links="vm.gridOptions.boundaryLinks"-->
+      <!--&gt;</md-table-pagination>-->
 
     </md-table>
   </md-card>

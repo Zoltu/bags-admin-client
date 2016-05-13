@@ -19,7 +19,7 @@ export class CategoryController {
       boundaryLinks: true,
 
       limitOptions: [5,10,15],
-      limit: 10,
+      limit: 10000,
       page: 1,
     };
 

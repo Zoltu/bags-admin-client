@@ -41,7 +41,7 @@ export class TagModelService {
     }
 
     let confirm = this.$mdDialog.confirm()
-    .title('Would you like to delete your tag?')
+    .title('Would you like to delete your product?')
     .ok('YES')
     .cancel('NO');
 
