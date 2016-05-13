@@ -45,6 +45,23 @@
   font-feature-settings: 'liga';
 }
 
+#loading-bar{
+  .bar{
+    background: #ededed;
+    //background: #428bca;
+    height: 4px;
+
+    //&:after {
+    //  content: "";
+    //  background-color: #ffffff;
+    //  padding: 0px 0 0 2000px;
+    //  height: 2px;
+    //  display: block;
+    //  margin-top: 4px;
+    //}
+  }
+}
+
 //html {
 //  font-family: 'Roboto Slab', serif;
 //}

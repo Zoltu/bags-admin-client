@@ -1,4 +1,4 @@
-export function config ($logProvider, toastrConfig, $mdThemingProvider) {
+export function config ($logProvider, toastrConfig, $mdThemingProvider, cfpLoadingBarProvider) {
   'ngInject';
   // Enable log
   $logProvider.debugEnabled(true);
@@ -13,4 +13,7 @@ export function config ($logProvider, toastrConfig, $mdThemingProvider) {
   // Material Theming
   $mdThemingProvider.theme('default')
   .primaryPalette('blue-grey');
+
+  // Load Bar
+  cfpLoadingBarProvider.includeSpinner = false;
 }
