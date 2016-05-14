@@ -33,7 +33,7 @@ export class ModalController{
   }
 
   preFillingData(){
-    this.selected.category = this.prefillingData.category;
+    this.selected.category = this.lodash.get(this.prefillingData, 'category');
     angular.extend(this.formData, this.prefillingData);
   }
 

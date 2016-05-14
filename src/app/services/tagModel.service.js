@@ -1,7 +1,8 @@
 export class TagModelService {
-  constructor ($q, lodash, modalService, tagModel, $mdDialog) {
+  constructor ($q, lodash, modalService, tagModel, $mdDialog, $mdToast) {
     'ngInject'
 
+    this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
     this.$q = $q;
     this.lodash = lodash;
@@ -50,6 +51,14 @@ export class TagModelService {
       return this.Model.delete(data).$promise.then((response) => {
         this.lodash.remove(this.collection, {id: data.id});
         return response;
+      })
+      .catch((err)=>{
+        this.$mdToast.show(
+          this.$mdToast.simple()
+          .textContent(err.data)
+          .position('top right')
+          .hideDelay(3000)
+        );
       });
     });
   }

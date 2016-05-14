@@ -59,6 +59,7 @@ angular.module('bags-app', [
   'md.data.table',
   'ngLodash',
   'slick',
+  'angular-loading-bar',
   tagModuleName,
   categoryModuleName,
   productModuleName
