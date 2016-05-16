@@ -27,6 +27,11 @@
     <table md-table ng-model="vm.selected" md-progress="promise">
 
       <div class="image-scroll" ng-if="vm.isImg()">
+        <!--<div class="img-preview" ng-if="vm.show !== false">-->
+        <div class="img-preview" ng-if="vm.show !== false">
+          <div><img  ng-src="{{ vm.data[vm.show] }}"></div>
+        </div>
+
         <slick class="slider"
           slider-data="vm.data"
           template-id="testSlider"
@@ -36,7 +41,7 @@
 
         <script type="text/ng-template" id="testSlider">
           <div class="item-image" ng-repeat="item in  sliderData">
-            <div class="img" style="background: url('{{ item }}')">
+            <div class="img" style="background: url('{{ item }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
               <div class="buttons" layout="column" layout-align="end center">
                 <md-button ng-click="parentScope.vm.edit($index)" aria-label="edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>

@@ -1,7 +1,13 @@
 md-table-container{
-  overflow: hidden;
+  overflow: visible;
 
   .image-scroll {
+    position: relative;
+
+    &:hover{
+      overflow: visible;
+    }
+
     width: 700px;
     height: 200px;
     overflow: hidden;
@@ -36,8 +42,26 @@ md-table-container{
           opacity: 0;
         }
       }
+    }
+  }
+}
 
+.img-preview {
+  position: absolute;
+  width: 692px;
+  height: 417px;
+  border: 1px solid #8A8A8A;
+  bottom: 203px;
+  padding: 3px;
+  overflow: hidden;
 
+  > div {
+    overflow: hidden;
+    background: #F3F3F3;
+
+    img{
+      height: 417px;
+      margin:auto; display:block
     }
   }
 }
