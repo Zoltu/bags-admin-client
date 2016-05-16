@@ -14,12 +14,6 @@
         <table md-table ng-model="vm.selected" md-progress="promise">
           <thead md-head md-order="vm.gridOptions.order">
             <tr md-row>
-              <th md-column>
-                <span>#</span>
-              </th>
-              <!--<th md-column>-->
-                <!--<span>ID</span>-->
-              <!--</th>-->
               <th md-column md-order-by="name">
                 <span>NAME</span>
               </th>
@@ -31,8 +25,6 @@
               md-select="item"
               md-select-id="{{$index}}"
               ng-repeat="item in vm.data | orderBy: vm.gridOptions.order | limitTo: vm.gridOptions.limit : (vm.gridOptions.page -1) * vm.gridOptions.limit">
-              <td md-cell>{{($index + 1 - vm.gridOptions.limit) + (vm.gridOptions.page * vm.gridOptions.limit)}}</td>
-              <!--<td md-cell>{{item.id}}</td>-->
               <td md-cell>{{item.name}}</td>
               <td md-cell class="control-buttons">
                 <md-button ng-click="vm.modalCreateOrUpdate(item)" aria-label="edit">
