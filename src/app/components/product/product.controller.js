@@ -30,6 +30,12 @@ export class ProductController {
 
   getProducts(){
     this.productModelService.getCollection().then((res)=>{
+      angular.forEach(res, (prod)=>{
+        prod.tags = prod.tags.map((el)=>{
+          el.name = `${el.category.name}:${el.name}`;
+          return el;
+        });
+      });
       this.data = res;
       return this.data;
     }).catch(console.log.bind(console));
@@ -46,5 +52,4 @@ export class ProductController {
     })
     .catch(console.log.bind(console));
   }
-
 }

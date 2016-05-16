@@ -29,9 +29,7 @@
               md-select-id="{{$index}}"
               ng-repeat="item in vm.data | orderBy: vm.gridOptions.order | limitTo: vm.gridOptions.limit : (vm.gridOptions.page -1) * vm.gridOptions.limit">
               <td md-cell>{{item.name}}</td>
-              <td md-cell>
-                {{vm.lodash.map(item.tags, 'name').toString()}}
-              </td>
+              <td md-cell ng-bind-html="vm.lodash.map(item.tags, 'name').join('<br>')"></td>
               <td md-cell class="control-buttons">
                 <md-button ng-click="vm.modalCreateOrUpdate(item)" aria-label="edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>

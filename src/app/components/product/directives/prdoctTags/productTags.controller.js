@@ -22,6 +22,10 @@ export class ProductTagsController {
 
   getTags() {
     this.tagModelService.getCollection().then((res)=> {
+      res = res.map((el)=>{
+        el.name = `${el.category.name}:${el.name}`;
+        return el;
+      });
       this.collections.tags = res;
       return this.tags;
     }).catch(console.log.bind(console));
