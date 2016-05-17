@@ -8,6 +8,7 @@ export class ProductUrlsController {
   }
 
   $onInit() {
+    this.show = false;
     this.selected = [];
     this.saveUrls = angular.copy(this.urls);
     this.data = this.urls || [];
