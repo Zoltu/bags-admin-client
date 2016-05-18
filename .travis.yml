@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "4"
+
+before_script:
+  - npm install -g gulp
+
+script: gulp build
+
+deploy:
+  provider: azure_web_apps
+  local_dir: dist
