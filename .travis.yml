@@ -19,6 +19,10 @@ before_script:
 
 script: gulp build
 
+// required for reasons: https://docs.travis-ci.com/user/deployment/#Uploading-Files
+deploy:
+	skip_cleanup: true
+
 deploy:
   provider: azure_web_apps
   local_dir: dist
