@@ -3,16 +3,17 @@ branches:
     - master
 version: '{build}'
 clone_depth: 1
-install:
-- npm -g install npm@2
-- npm install --force gulp
-- npm install --force bower
-- npm install --force
-- node_modules\.bin\bower install
-build_script:
-- node_modules\.bin\gulp build
 cache:
 - node_modules -> package.json
+install:
+- ps: Install-product node 6
+- npm install -g gulp
+- npm install -g bower
+- npm install
+- bower install
+build_script:
+- gulp build
+test: off
 artifacts:
 - path: dist
 deploy:
