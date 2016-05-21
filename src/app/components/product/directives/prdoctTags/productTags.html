@@ -1,13 +1,12 @@
 <div layout="row">
-  <md-input-container flex>
-    <label>Tags</label>
-    <md-select ng-model="vm.data"
-      ng-model-options="{trackBy: '$value.id'}"
-      multiple
-      name="tag">
-      <md-option ng-value="tag" ng-repeat="tag in vm.collections.tags">
-        {{ tag.name }}
-      </md-option>
-    </md-select>
-  </md-input-container>
+  <md-contact-chips
+    flex
+    ng-model="vm.data"
+    md-contacts="vm.querySearch($query)"
+    md-contact-name="name"
+    md-require-match="true"
+    md-highlight-flags="i"
+    filter-selected="true"
+    placeholder="Tags">
+  </md-contact-chips>
 </div>
