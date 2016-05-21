@@ -60,6 +60,7 @@ angular.module('bags-app', [
   'ngLodash',
   'slick',
   'angular-loading-bar',
+  'angular.filter',
   tagModuleName,
   categoryModuleName,
   productModuleName

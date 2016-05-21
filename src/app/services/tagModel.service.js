@@ -14,8 +14,13 @@ export class TagModelService {
 
   getCollection(){
     return this.Model.query().$promise
-    .then((res)=>{
+    .then((res)=> {
+      res = res.map((el)=> {
+        el.fullName = `${el.category.name}:${el.name}`;
+        return el;
+      });
       angular.copy(res, this.collection);
+      // console.log(this.collection);
       return this.collection;
     });
   }

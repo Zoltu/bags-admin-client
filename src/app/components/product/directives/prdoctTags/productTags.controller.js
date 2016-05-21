@@ -1,10 +1,9 @@
-var pendingSearch, cancelSearch = angular.noop;
-var cachedQuery, lastSearch;
 export class ProductTagsController {
 
-  constructor(lodash, $scope, tagModelService) {
+  constructor(lodash, $scope, tagModelService, $filter) {
     'ngInject'
 
+    this.$filter = $filter;
     this.$scope = $scope;
     this.lodash = lodash;
     this.tagModelService = tagModelService;
@@ -23,30 +22,14 @@ export class ProductTagsController {
   }
 
   querySearch(criteria) {
-    return criteria ? this.collections.tags.filter(this.createFilterFor(criteria)) : [];
-  }
-
-  createFilterFor(query) {
-    var lowercaseQuery = angular.lowercase(query);
-
-    return function filterFn(contact) {
-      return (contact.name.indexOf(lowercaseQuery) != -1);
-    };
-
+    return criteria ? this.$filter('fuzzyBy')(this.collections.tags, 'fullName', criteria) : [];
   }
 
   getTags() {
-    this.tagModelService.getCollection().then((res)=> {
-      res = res.map((el)=> {
-        el.name = `${el.category.name}:${el.name}`;
-        return el;
-      });
+    this.tagModelService.getCollection()
+    .then((res)=> {
       this.collections.tags = res;
-
-      // this.allContacts = this.collections.tags;
-      // this.contacts = [this.collections.tags[0]];
-
-      return this.tags;
+      return this.collections.tags
     }).catch(console.log.bind(console));
   }
 
