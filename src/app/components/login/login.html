@@ -1,0 +1,57 @@
+<md-content laout="column" flex>
+  <md-card>
+    <md-table>
+      <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+          <span>Logins</span>
+          <div flex></div>
+          <md-button class="md-raised" ng-click="vm.modalCreateOrUpdate()">Create</md-button>
+        </div>
+      </md-toolbar>
+
+      <md-table-container>
+        <!--<table md-table md-row-select multiple="{{vm.gridOptions.multiSelect}}" ng-model="vm.selected" md-progress="promise">-->
+        <table md-table ng-model="vm.selected" md-progress="promise">
+          <thead md-head md-order="vm.gridOptions.order">
+            <tr md-row>
+              <th md-column md-order-by="name">
+                <span>NAME</span>
+              </th>
+              <th md-column md-order-by="category.name">
+                <span>CATEGORY</span>
+              </th>
+              <th md-column></th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row
+              md-select="item"
+              md-select-id="{{$index}}"
+              ng-repeat="item in vm.data | orderBy: vm.gridOptions.order | limitTo: vm.gridOptions.limit : (vm.gridOptions.page -1) * vm.gridOptions.limit">
+              <td md-cell>{{item.name}}</td>
+              <td md-cell>{{item.category.name}}</td>
+              <td md-cell class="control-buttons">
+                <md-button ng-click="vm.modalCreateOrUpdate(item)" aria-label="edit">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </md-button>
+                <md-button ng-click="vm.remove(item)" aria-label="remove">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </md-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+
+      <!--<md-table-pagination-->
+        <!--md-limit="vm.gridOptions.limit"-->
+        <!--md-limit-options="vm.gridOptions.limitOptions"-->
+        <!--md-page="vm.gridOptions.page"-->
+        <!--md-total="{{vm.data.length}}"-->
+        <!--md-page-select="vm.gridOptions.pageSelect"-->
+        <!--md-boundary-links="vm.gridOptions.boundaryLinks"-->
+      <!--&gt;</md-table-pagination>-->
+
+    </md-table>
+  </md-card>
+</md-content>

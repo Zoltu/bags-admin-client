@@ -1,4 +1,4 @@
-export function config ($logProvider, toastrConfig, $mdThemingProvider, cfpLoadingBarProvider) {
+export function config($logProvider, toastrConfig, $mdThemingProvider, cfpLoadingBarProvider, GooglePlusProvider, localStorageServiceProvider) {
   'ngInject';
   // Enable log
   $logProvider.debugEnabled(true);
@@ -16,4 +16,11 @@ export function config ($logProvider, toastrConfig, $mdThemingProvider, cfpLoadi
 
   // Load Bar
   cfpLoadingBarProvider.includeSpinner = false;
+
+  // Google+
+  GooglePlusProvider.init({
+    clientId: '867651060370-4oqj1vdb06deotdvek82riivej3q4pmk.apps.googleusercontent.com'
+  });
+
+  localStorageServiceProvider.setPrefix('bagsApp');
 }

@@ -1,6 +1,7 @@
 /* global malarkey:false, moment:false */
 
 import {config} from './index.config';
+import {httpConfig} from './http.config';
 import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
 import {MainController} from './main/main.controller';
@@ -44,6 +45,7 @@ import {
 import {moduleName as tagModuleName} from './components/tag/index'
 import {moduleName as categoryModuleName} from './components/category/index'
 import {moduleName as productModuleName} from './components/product/index'
+import {moduleName as loginModuleName} from './components/login/index'
 
 angular.module('bags-app', [
   'ngAnimate',
@@ -61,6 +63,9 @@ angular.module('bags-app', [
   'slick',
   'angular-loading-bar',
   'angular.filter',
+  'googleplus',
+  'LocalStorageModule',
+  loginModuleName,
   tagModuleName,
   categoryModuleName,
   productModuleName
@@ -70,6 +75,7 @@ angular.module('bags-app', [
 .constant('moment', moment)
 
 .config(config)
+.config(httpConfig)
 .config(routerConfig)
 .run(runBlock)
 
