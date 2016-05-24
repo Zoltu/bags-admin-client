@@ -13,7 +13,6 @@ import {SidebarMenuComponent} from '../app/components/sidebarMenu/sidebarMenu.co
 
 // CONSTANTS //
 import {
-  baseParams
 } from './constants';
 
 // DECORATORS //
@@ -48,6 +47,7 @@ import {moduleName as productModuleName} from './components/product/index'
 import {moduleName as loginModuleName} from './components/login/index'
 
 angular.module('bags-app', [
+  'envConst',
   'ngAnimate',
   'ngCookies',
   'ngTouch',
@@ -70,7 +70,6 @@ angular.module('bags-app', [
   categoryModuleName,
   productModuleName
 ])
-.constant('baseParams', baseParams)
 .constant('malarkey', malarkey)
 .constant('moment', moment)
 
