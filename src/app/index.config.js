@@ -21,6 +21,7 @@ export function config($logProvider, toastrConfig, $mdThemingProvider, cfpLoadin
   GooglePlusProvider.init({
     clientId: '867651060370-4oqj1vdb06deotdvek82riivej3q4pmk.apps.googleusercontent.com'
   });
+  GooglePlusProvider.setScopes('profile');
 
   localStorageServiceProvider.setPrefix('bagsApp');
 }
