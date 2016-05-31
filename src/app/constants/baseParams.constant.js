@@ -1,2 +1,2 @@
 angular.module("envConst", [])
-.constant("baseParams", {"apiUrl":"https://bags-api.zoltu.com/api/"});
+.constant("baseParams", {"apiUrl":"https://zoltu-bags-middleware.azurewebsites.net/api/"});

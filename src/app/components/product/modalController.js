@@ -30,7 +30,7 @@ export class ModalController {
   }
 
   preFillingData() {
-    this.prefillingData.tags = this.prefillingData.tags.map((el)=> {
+    this.lodash.map(this.lodash.get(this.prefillingData, 'tags'), (el)=> {
       el.fullName = `${el.category.name}:${el.name}`;
       return el;
     });
