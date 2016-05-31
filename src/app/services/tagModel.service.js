@@ -20,7 +20,6 @@ export class TagModelService {
         return el;
       });
       angular.copy(res, this.collection);
-      // console.log(this.collection);
       return this.collection;
     });
   }

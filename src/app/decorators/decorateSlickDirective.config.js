@@ -138,7 +138,7 @@ export function decorateSlickDirective ($provide) {
               });
             }
           });
-          return scope.$watch('currentIndex', function (newVal, oldVal) {
+          return scope.$watch('currentIndex', function (newVal) {
             if (currentIndex != null && newVal != null && newVal !== currentIndex) {
               return slider.slick('slickGoTo', newVal);
             }
@@ -157,7 +157,7 @@ export function decorateSlickDirective ($provide) {
 
       scope.parentScope = scope.$parent;
       isInitialized = false;
-      scope.$watchCollection('sliderData', function (newVal, oldVal) {
+      scope.$watchCollection('sliderData', function (newVal) {
         if (newVal && newVal.length > 0) {
           if (isInitialized) {
             element.slick('unslick');
@@ -171,7 +171,6 @@ export function decorateSlickDirective ($provide) {
 
     directive.compile = function() {
       return function(scope, element, attrs) {
-        console.log(this, arguments);
         link.apply(this, arguments);
       };
     };
