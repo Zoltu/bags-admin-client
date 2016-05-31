@@ -63,7 +63,6 @@ angular.module('bags-app', [
   'slick',
   'angular-loading-bar',
   'angular.filter',
-  'googleplus',
   'LocalStorageModule',
   loginModuleName,
   tagModuleName,
@@ -72,6 +71,7 @@ angular.module('bags-app', [
 ])
 .constant('malarkey', malarkey)
 .constant('moment', moment)
+.constant('gapi', gapi)
 
 .config(config)
 .config(httpConfig)

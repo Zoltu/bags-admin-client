@@ -1,27 +1,23 @@
 export class LoginService {
-  constructor ($q, GooglePlus) {
+  constructor ($q, gapi) {
     'ngInject'
 
     this.$q = $q;
-    this.GooglePlus = GooglePlus;
+    this.gapi = gapi;
+    this.scopes = 'profile';
+    this.clientId = '867651060370-4oqj1vdb06deotdvek82riivej3q4pmk.apps.googleusercontent.com';
   }
 
   login(){
     return this.$q((resolve, reject)=>{
-      var interval = setInterval(()=>{
-        if(gapi.auth){
-
-          this.GooglePlus.login().then((authResult) => {
-            resolve(authResult);
-            // this.GooglePlus.getUser().then((user)=>{
-            //   console.log('google user', user);
-            // });
-          }, function (err) {
-            reject(err);
-          });
-          clearInterval(interval);
-        }
-      },2000);
-    })
+      var params = {
+        client_id: this.clientId,
+        scope: this.scopes,
+        immediate: false
+      };
+      this.gapi.auth.authorize(params, (response)=>{
+        resolve(response);
+      });
+    });
   }
 }
