@@ -1,4 +1,4 @@
-export function config ($logProvider, toastrConfig, $mdThemingProvider, cfpLoadingBarProvider) {
+export function config($logProvider, toastrConfig, $mdThemingProvider, cfpLoadingBarProvider, localStorageServiceProvider) {
   'ngInject';
   // Enable log
   $logProvider.debugEnabled(true);
@@ -16,4 +16,6 @@ export function config ($logProvider, toastrConfig, $mdThemingProvider, cfpLoadi
 
   // Load Bar
   cfpLoadingBarProvider.includeSpinner = false;
+
+  localStorageServiceProvider.setPrefix('bagsApp');
 }

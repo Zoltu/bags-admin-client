@@ -12,6 +12,9 @@ export class ModalService {
       bindToController: true,
     }, params);
 
-    return this.$mdDialog.show(params);
+    return this.$mdDialog.show(params)
+    .catch(function(response) {
+      return response;
+    });
   }
 }

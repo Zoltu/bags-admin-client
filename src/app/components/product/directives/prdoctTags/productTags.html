@@ -1,9 +1,10 @@
 <div layout="row">
+
   <md-contact-chips
     flex
     ng-model="vm.data"
     md-contacts="vm.querySearch($query)"
-    md-contact-name="name"
+    md-contact-name="fullName"
     md-require-match="true"
     md-highlight-flags="i"
     filter-selected="true"

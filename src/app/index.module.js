@@ -1,6 +1,7 @@
 /* global malarkey:false, moment:false */
 
 import {config} from './index.config';
+import {httpConfig} from './http.config';
 import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
 import {MainController} from './main/main.controller';
@@ -12,7 +13,6 @@ import {SidebarMenuComponent} from '../app/components/sidebarMenu/sidebarMenu.co
 
 // CONSTANTS //
 import {
-  baseParams
 } from './constants';
 
 // DECORATORS //
@@ -44,8 +44,10 @@ import {
 import {moduleName as tagModuleName} from './components/tag/index'
 import {moduleName as categoryModuleName} from './components/category/index'
 import {moduleName as productModuleName} from './components/product/index'
+import {moduleName as loginModuleName} from './components/login/index'
 
 angular.module('bags-app', [
+  'envConst',
   'ngAnimate',
   'ngCookies',
   'ngTouch',
@@ -60,15 +62,19 @@ angular.module('bags-app', [
   'ngLodash',
   'slick',
   'angular-loading-bar',
+  'angular.filter',
+  'LocalStorageModule',
+  loginModuleName,
   tagModuleName,
   categoryModuleName,
   productModuleName
 ])
-.constant('baseParams', baseParams)
 .constant('malarkey', malarkey)
 .constant('moment', moment)
+.constant('gapi', gapi)
 
 .config(config)
+.config(httpConfig)
 .config(routerConfig)
 .run(runBlock)
 

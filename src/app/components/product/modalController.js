@@ -26,13 +26,14 @@ export class ModalController {
       tag: null
     };
 
-
     this.preFillingData();
-    // this.getTags();
   }
 
   preFillingData() {
-    // this.selected.category = this.prefillingData.category;
+    this.lodash.map(this.lodash.get(this.prefillingData, 'tags'), (el)=> {
+      el.fullName = `${el.category.name}:${el.name}`;
+      return el;
+    });
     angular.extend(this.formData, this.prefillingData);
   }
 
