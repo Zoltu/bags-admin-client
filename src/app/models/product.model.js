@@ -14,6 +14,12 @@ export default function ($resource, baseParams) {
         method: 'PUT',
         // params: params
       },
+      saveAmazon: {
+        method: 'PUT',
+        params: {
+          action: 'amazon',
+        }
+      },
       update: {
         method: 'PUT',
         // params: params

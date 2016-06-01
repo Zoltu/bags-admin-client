@@ -35,6 +35,14 @@ export class ProductModelService {
     });
   }
 
+  saveAmazon(data) {
+    return this.Model.saveAmazon(data).$promise
+    .then((response) => {
+      this.collection.push(response);
+      return response;
+    });
+  }
+
   remove(data){
     if(this.lodash.isEmpty(data)){
       return this.$q.reject(false);

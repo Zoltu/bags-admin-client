@@ -12,6 +12,7 @@ export class ModalController {
 
   onInit() {
     this.formData = {};
+    this.prefillingData = this.prefillingData || {};
 
     this.added = {
       images: []
@@ -30,6 +31,7 @@ export class ModalController {
   }
 
   preFillingData() {
+    this.prefillingData.tags = this.prefillingData.tags || [];
     this.lodash.map(this.lodash.get(this.prefillingData, 'tags'), (el)=> {
       el.fullName = `${el.category.name}:${el.name}`;
       return el;

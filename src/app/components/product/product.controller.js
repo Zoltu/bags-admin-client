@@ -52,4 +52,12 @@ export class ProductController {
     })
     .catch(console.log.bind(console));
   }
+
+  modalCreateByAsin() {
+    this.productService.modalCreateByAsin()
+    .then((res)=>{
+      this.productService.modal(res)
+    })
+    .catch(console.log.bind(console));
+  }
 }
