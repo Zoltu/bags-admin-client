@@ -25,7 +25,7 @@ gulp or gulp build to build an optimized version of your application in /dist
 
 ##### Run `gulp build:map`
 ```
-gulp build:map to build not minifield version of your application in /dist with mapping files
+gulp build:map to build an optimized version of your application in /dist with mapping files
 ```
 
 ##### Run `gulp serve`
@@ -40,5 +40,5 @@ gulp serve:dist to launch a server on your optimized application
 
 ##### Run `gulp serve:dist:map`
 ```
-gulp serve:dist:map to launch a server on your optimized application with mapping files
+gulp serve:dist to launch a server on your optimized application with mapping files
 ```

@@ -5,7 +5,8 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var browserSync = require('browser-sync');
-var webpack = require('webpack-stream');
+var webpackStream = require('webpack-stream');
+var webpack = require('webpack');
 
 var $ = require('gulp-load-plugins')();
 
@@ -22,6 +23,20 @@ function webpackWrapper(watch, test, callback) {
 
   if(watch || conf.params.createMaps) {
     webpackOptions.devtool = 'inline-source-map';
+    webpackOptions.plugins = webpack.plugins || [];
+    webpackOptions.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
+        mangle: {
+          compress: {
+            caseSensitive: true,
+            warnings: true,
+            drop_console: true,
+            unsafe: false
+          }
+        }
+      })
+    );
   }
 
   var webpackChangeHandler = function(err, stats) {
@@ -47,7 +62,7 @@ function webpackWrapper(watch, test, callback) {
   }
 
   return gulp.src(sources)
-    .pipe(webpack(webpackOptions, null, webpackChangeHandler))
+    .pipe(webpackStream(webpackOptions, null, webpackChangeHandler))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app')));
 }
 
