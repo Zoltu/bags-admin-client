@@ -20,7 +20,7 @@ function webpackWrapper(watch, test, callback) {
     output: { filename: 'index.module.js' }
   };
 
-  if(watch) {
+  if(watch || conf.params.createMaps) {
     webpackOptions.devtool = 'inline-source-map';
   }
 

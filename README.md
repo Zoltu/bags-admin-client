@@ -15,9 +15,30 @@ npm install
 bower install
 ```
 
-### Run
 
-##### Run `server`
+### Use Gulp tasks
+
+##### Run `gulp or gulp build`
 ```
-gulp serve
+gulp or gulp build to build an optimized version of your application in /dist
+```
+
+##### Run `gulp build:map`
+```
+gulp build:map to build an optimized version of your application in /dist
+```
+
+##### Run `gulp serve`
+```
+gulp serve to launch a browser sync server on your source files
+```
+
+##### Run `gulp serve:dist`
+```
+gulp serve:dist to launch a server on your optimized application
+```
+
+##### Run `gulp serve:dist:map`
+```
+gulp serve:dist:map to launch a server on your optimized application with mapping files
 ```

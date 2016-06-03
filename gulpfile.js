@@ -8,6 +8,7 @@
 
 var gulp = require('gulp');
 var wrench = require('wrench');
+var conf = require('./gulp/conf');
 
 /**
  *  This will load all js or coffee files in the gulp directory
@@ -30,4 +31,8 @@ gulp.task('default', ['clean', 'env:prod'], function () {
 
 gulp.task('dist', ['clean'], function () {
   gulp.start('build');
+});
+
+gulp.task('createMap', function () {
+  conf.params.createMaps = true;
 });
