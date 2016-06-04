@@ -1,0 +1,31 @@
+<md-dialog flex="40">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Product</h2>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <div layout="column" class="inputdemoErrorsAdvanced" ng-cloak>
+        <md-content layout-padding>
+          <form name="vm.formSave" ng-submit="vm.save()" novalidate>
+
+            <md-input-container class="md-block">
+              <label>Asin</label>
+              <input ng-required="true" name="asin" ng-model="vm.formData.asin">
+              <div ng-messages="vm.formSave.asin.$error">
+                <div ng-message="required">ASIN is required.</div>
+              </div>
+            </md-input-container>
+
+            <div layout="row" layout-align="end center">
+              <md-button ng-click="vm.close()" class="md-raised md-primary" ng-disabled="vm.disabled">Cancel</md-button>
+              <md-button type="submit" class="md-raised md-primary" ng-disabled="vm.disabled">Save</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </div>
+    </div>
+  </md-dialog-content>
+</md-dialog>

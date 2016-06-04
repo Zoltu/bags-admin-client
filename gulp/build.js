@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var ifElse = require('gulp-if-else');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -42,17 +43,16 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe($.useref())
     .pipe(jsFilter)
-    .pipe($.sourcemaps.init())
-    .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+    .pipe(ifElse(!conf.params.createMaps, function () {
+      return $.uglify({ preserveComments: $.uglifySaveLicense }).on('error', conf.errorHandler('Uglify'));
+    }, null))
     .pipe($.rev())
     .pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
-    // .pipe($.sourcemaps.init())
     .pipe($.replace('../../bower_components/material-design-iconfont/iconfont/', '../fonts/'))
     .pipe($.cssnano())
     .pipe($.rev())
-    // .pipe($.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
     .pipe($.revReplace())
     .pipe(htmlFilter)
@@ -94,3 +94,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
+
+gulp.task('build:map', function () {
+  gulp.run('createMap', 'build');
+});
