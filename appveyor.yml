@@ -12,7 +12,7 @@ install:
 - npm install
 - bower install
 build_script:
-- gulp build
+- gulp build:map
 test: off
 artifacts:
 - path: dist
