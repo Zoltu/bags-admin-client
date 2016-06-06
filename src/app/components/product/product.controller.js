@@ -1,9 +1,10 @@
 export class ProductController {
-  constructor (productModelService, productService, lodash) {
+  constructor (productModelService, tagModelService, productService, lodash) {
     'ngInject';
 
     this.lodash = lodash;
     this.productModelService = productModelService;
+    this.tagModelService = tagModelService;
     this.productService = productService;
 
     this.onInit();
@@ -26,6 +27,7 @@ export class ProductController {
     };
 
     this.getProducts();
+    this.getTags();
   }
 
   getProducts(){
@@ -39,6 +41,11 @@ export class ProductController {
       this.data = res;
       return this.data;
     }).catch(console.log.bind(console));
+  }
+
+  getTags() {
+    this.tagModelService.getCollection({showCachedData: true})
+    .catch(console.log.bind(console));
   }
 
   remove(data) {
