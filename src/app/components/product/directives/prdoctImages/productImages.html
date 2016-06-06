@@ -40,7 +40,7 @@
         ></slick>
 
         <script type="text/ng-template" id="testSlider">
-          <div class="item-image" ng-repeat="item in  sliderData track by $index">
+          <div class="item-image" ng-repeat="item in  sliderData | orderBy: 'priority' track by $index">
             <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
               <div class="buttons" layout="column" layout-align="end center">
                 <!--<md-button ng-click="parentScope.vm.edit($index)" aria-label="edit">-->
