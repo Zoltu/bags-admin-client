@@ -48,8 +48,8 @@ export class ModalController {
     this.formData.tag_id = this.lodash.get(this.selected.tag, 'id');
 
     return this.productModelService.save(this.formData)
-    .then(this.saveImages.bind(this))
-    .then(this.saveUrls.bind(this))
+    // .then(this.saveImages.bind(this))
+    // .then(this.saveUrls.bind(this))
     .then(this.saveTags.bind(this))
     .then((response) => {
       this.lodash.merge(this.prefillingData, response);
