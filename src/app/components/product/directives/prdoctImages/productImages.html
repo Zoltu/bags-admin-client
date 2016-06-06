@@ -1,0 +1,89 @@
+<md-table>
+  <!--<ng-form name="vm.formSave">-->
+    <!--<div layout="row" flex>-->
+      <!--<md-input-container flex>-->
+        <!--<label>{{ vm.label }}</label>-->
+        <!--&lt;!&ndash;<input name="url" type="url" ng-model="vm.url">&ndash;&gt;-->
+        <!--<input name="url" ng-model="vm.url">-->
+        <!--<div ng-messages="vm.formSave.url.$error">-->
+          <!--<div ng-message="url">Enter valid url.</div>-->
+        <!--</div>-->
+      <!--</md-input-container>-->
+      <!--<div flex="10" ng-if="!vm.editItem">-->
+        <!--<md-button class="md-raised" ng-click="vm.create()">Add</md-button>-->
+      <!--</div>-->
+      <!--<div flex="25" ng-if="!!vm.editItem" layout="row">-->
+        <!--<div>-->
+          <!--<md-button class="md-raised" ng-click="vm.update()">Save</md-button>-->
+        <!--</div>-->
+        <!--<div>-->
+          <!--<md-button class="md-raised" ng-click="vm.cancelUpdate()">Cancel</md-button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</ng-form>-->
+
+  <md-table-container ng-show="vm.data.length">
+    <table md-table ng-model="vm.selected" md-progress="promise">
+
+      <div class="image-scroll">
+        <!--<div class="img-preview" ng-if="vm.show !== false">-->
+        <div class="img-preview" ng-if="vm.show !== false">
+          <div><img  ng-src="{{ vm.data[vm.show].large }}"></div>
+        </div>
+
+        <slick class="slider"
+          slider-data="vm.data"
+          template-id="testSlider"
+          slides-to-show=5
+          slides-to-scroll=3
+        ></slick>
+
+        <script type="text/ng-template" id="testSlider">
+          <div class="item-image" ng-repeat="item in  sliderData">
+            <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
+              <div class="buttons" layout="column" layout-align="end center">
+                <!--<md-button ng-click="parentScope.vm.edit($index)" aria-label="edit">-->
+                  <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+                <!--</md-button>-->
+                <!--<md-button ng-click="parentScope.vm.remove($index)" aria-label="remove">-->
+                  <!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
+                <!--</md-button>-->
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+
+      <!--<thead md-head>-->
+        <!--<tr md-row>-->
+          <!--<th md-column>-->
+            <!--<span>#</span>-->
+          <!--</th>-->
+          <!--<th md-column>-->
+            <!--<span>URI</span>-->
+          <!--</th>-->
+          <!--<th md-column></th>-->
+        <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody md-body>-->
+        <!--<tr-->
+          <!--md-row-->
+          <!--md-select="item"-->
+          <!--md-select-id="{{$index}}"-->
+          <!--ng-repeat="item in vm.data">-->
+          <!--<td md-cell>{{$index + 1}}</td>-->
+          <!--<td md-cell>{{item}}</td>-->
+          <!--<td md-cell class="control-buttons">-->
+            <!--<md-button ng-click="vm.edit($index)" aria-label="edit">-->
+              <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+            <!--</md-button>-->
+            <!--<md-button ng-click="vm.remove($index)" aria-label="remove">-->
+              <!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
+            <!--</md-button>-->
+          <!--</td>-->
+        <!--</tr>-->
+      <!--</tbody>-->
+    </table>
+  </md-table-container>
+</md-table>
