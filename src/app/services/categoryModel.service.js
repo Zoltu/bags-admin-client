@@ -12,10 +12,10 @@ export class CategoryModelService {
   }
 
   getCollection(params){
-    // params = params || {};
-    // if(params.showCachedData && this.collection){
-    //   return this.$q(this.collection);
-    // }
+    params = params || {};
+    if(params.showCachedData && this.collection.length){
+      return this.$q.when(this.collection);
+    }
 
     return this.Model.query().$promise
     .then((res)=>{

@@ -26,7 +26,7 @@ export class ModalController{
   }
 
   getCategories(){
-    this.categoryModelService.getCollection().then((res)=>{
+    this.categoryModelService.getCollection({showCachedData: true}).then((res)=>{
       this.collections.categories = res;
       return this.categories;
     }).catch(console.log.bind(console));
