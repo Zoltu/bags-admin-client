@@ -48,7 +48,11 @@ export class ProductController {
   modalCreateOrUpdate(data) {
     this.productService.modal(data)
     .then((res)=>{
-      this.getProducts();
+      if(res){
+        var index = this.lodash.findIndex(this.data, ['id', res.id]);
+        this.data[index] = res;
+      }
+      return res;
     })
     .catch(console.log.bind(console));
   }

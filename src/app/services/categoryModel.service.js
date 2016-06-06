@@ -11,7 +11,12 @@ export class CategoryModelService {
     this.collection = []
   }
 
-  getCollection(){
+  getCollection(params){
+    // params = params || {};
+    // if(params.showCachedData && this.collection){
+    //   return this.$q(this.collection);
+    // }
+
     return this.Model.query().$promise
     .then((res)=>{
       angular.copy(res, this.collection);
