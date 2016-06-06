@@ -125,24 +125,13 @@ export class ModalController {
   }
 
   saveTags(res) {
-    let pTags = [this.$q.when(res)];
-    angular.forEach(this.added.tags, (el)=> {
-      let data = {
-        product_id: res.id,
-        tag_id: el.id
-      };
-      let pTag = this.productModelService.saveTag(data)
-      .then((pTagRes)=>{
-        var newTag = this.lodash.find(pTagRes.tags, {id: data.tag_id});
-        res.tags.push(newTag);
-        return res;
-      });
-      pTags.unshift(pTag);
-    });
+    var ids = this.lodash.map(this.added.tags, 'id');
+    var data = {
+      product_id: res.id,
+      tag_ids: ids
+    };
 
-    return this.$q.all(pTags).then(()=> {
-      return res;
-    });
+    return this.productModelService.saveTag(data);
   }
 
   removeTags(res) {
