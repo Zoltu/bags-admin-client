@@ -12,7 +12,7 @@ export class ProductTagsController {
   $onInit() {
     this.collections = [];
     this.saveTags = angular.copy(this.tags);
-    this.data = this.tags || [];
+    this.data = angular.copy(this.tags) || [];
     this.addedTags = this.addedTags || [];
     this.removedTags = this.removedTags || [];
 
