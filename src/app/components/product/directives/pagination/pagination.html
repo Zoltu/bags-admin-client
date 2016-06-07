@@ -1,0 +1,24 @@
+<div class="md-table-pagination">
+  <div class="limit-select">
+    <div class="label">Rows per page: </div>
+    <md-select
+      md-on-close="vm.changeLimit()"
+      class="md-table-select"
+      ng-model="vm.limit"
+      md-container-class="md-pagination-select"
+      aria-label="Rows"
+      placeholder="{{ vm.limitOptions[0] }}">
+      <md-option ng-repeat="option in vm.limitOptions" ng-value="option">{{ option }}</md-option>
+    </md-select>
+  </div>
+
+  <md-button class="md-icon-button" type="button" ng-click="vm.prev()" ng-disabled="vm.page == 1" aria-label="Before">
+    <md-icon md-svg-icon="navigate-before.svg"></md-icon>
+  </md-button>
+
+  <div>{{vm.page}}</div>
+
+  <md-button class="md-icon-button" type="button" ng-click="vm.next()" aria-label="Next">
+    <md-icon md-svg-icon="navigate-next.svg"></md-icon>
+  </md-button>
+</div>

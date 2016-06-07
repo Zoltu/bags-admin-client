@@ -10,6 +10,13 @@ export default function ($resource, baseParams) {
     baseParams.apiUrl + 'products/:product_id/:subAction/:tag_id/:id/:action/:actionTwo/:actionThree/:actionFour/',
     {id: '@id', action: '@action', actionTwo: '@actionTwo'},
     {
+      query: {
+        params: {
+          subAction: 'by_tags',
+          products_per_page: 5
+        },
+        isArray:true,
+      },
       save: {
         method: 'PUT',
         // params: params

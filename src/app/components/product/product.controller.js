@@ -1,7 +1,8 @@
 export class ProductController {
-  constructor (productModelService, tagModelService, productService, lodash) {
+  constructor (productModelService, tagModelService, productService, lodash, $filter) {
     'ngInject';
 
+    this.$filter = $filter;
     this.lodash = lodash;
     this.productModelService = productModelService;
     this.tagModelService = tagModelService;
@@ -12,8 +13,13 @@ export class ProductController {
 
   onInit(){
     this.data = [];
+    this.collections = {
+      tags: []
+    };
     this.categories = [];
-    this.selected = [];
+    this.selected = {
+      tags: []
+    };
     this.gridOptions = {
       order: 'name',
       rowSelection: true,
@@ -21,8 +27,8 @@ export class ProductController {
       pageSelect: true,
       boundaryLinks: true,
 
-      limitOptions: [5,10,15],
-      limit: 10000,
+      limitOptions: [5,10,20,50,100,200,500],
+      limit: 5,
       page: 1,
     };
 
@@ -32,12 +38,6 @@ export class ProductController {
 
   getProducts(){
     this.productModelService.getCollection().then((res)=>{
-      // angular.forEach(res, (prod)=>{
-      //   prod.tags = prod.tags.map((el)=>{
-      //     el.name = `${el.category.name}:${el.name}`;
-      //     return el;
-      //   });
-      // });
       this.data = res;
       return this.data;
     }).catch(console.log.bind(console));
@@ -45,7 +45,15 @@ export class ProductController {
 
   getTags() {
     this.tagModelService.getCollection({showCachedData: true})
+    .then((res)=> {
+      this.collections.tags = res;
+      return this.collections.tags
+    })
     .catch(console.log.bind(console));
+  }
+
+  querySearch(criteria) {
+    return criteria ? this.$filter('fuzzyBy')(this.collections.tags, 'fullName', criteria) : [];
   }
 
   remove(data) {

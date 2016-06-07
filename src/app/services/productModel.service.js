@@ -11,8 +11,8 @@ export class ProductModelService {
     this.collection = []
   }
 
-  getCollection(){
-    return this.Model.query().$promise
+  getCollection(params){
+    return this.Model.query(params).$promise
     .then((res)=>{
       angular.copy(res, this.collection);
       return this.collection;
