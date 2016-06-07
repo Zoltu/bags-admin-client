@@ -98,9 +98,14 @@ export class ProductModelService {
   }
 
   removeTag(data){
+    data.deleted_tag_id = data.tag_id;
     return this.Model.deleteTag(data).$promise
     .then((response) => {
       return response;
     });
+
+
+
+    
   }
 }

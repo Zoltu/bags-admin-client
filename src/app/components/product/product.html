@@ -9,6 +9,19 @@
         </div>
       </md-toolbar>
 
+      <div layout="row">
+        <md-contact-chips
+          flex
+          ng-model="vm.selected.tags"
+          md-contacts="vm.querySearch($query)"
+          md-contact-name="fullName"
+          md-require-match="true"
+          md-highlight-flags="i"
+          filter-selected="true"
+          placeholder="Filter by Tags">
+        </md-contact-chips>
+      </div>
+
       <md-table-container>
         <!--<table md-table md-row-select multiple="{{vm.gridOptions.multiSelect}}" ng-model="vm.selected" md-progress="promise">-->
         <table md-table ng-model="vm.selected" md-progress="promise">

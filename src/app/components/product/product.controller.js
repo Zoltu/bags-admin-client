@@ -1,7 +1,8 @@
 export class ProductController {
-  constructor (productModelService, tagModelService, productService, lodash, $filter) {
+  constructor (productModelService, tagModelService, productService, lodash, $filter, $scope) {
     'ngInject';
 
+    this.$scope = $scope;
     this.$filter = $filter;
     this.lodash = lodash;
     this.productModelService = productModelService;
@@ -34,10 +35,22 @@ export class ProductController {
 
     this.getProducts();
     this.getTags();
+
+    this.$scope.$watchCollection("vm.selected.tags", this.watchSelectedTags.bind(this));
   }
 
-  getProducts(){
-    this.productModelService.getCollection().then((res)=>{
+  watchSelectedTags(el, oldEl){
+    if(!el.length && !oldEl.length){
+      return
+    }
+    let params = {
+      'tag_id': this.lodash.map(el, 'id')
+    };
+    this.getProducts(params);
+  }
+
+  getProducts(params){
+    this.productModelService.getCollection(params).then((res)=>{
       this.data = res;
       return this.data;
     }).catch(console.log.bind(console));

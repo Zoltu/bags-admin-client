@@ -13,6 +13,7 @@ export class PaginationsController {
 
   prev(){
     let params = {
+      tag_id: this.lodash.map(this.tags, 'id'),
       products_per_page: this.limit,
       starting_product_id: (this.page - 1) * this.limit - this.limit
     };
@@ -25,6 +26,7 @@ export class PaginationsController {
 
   next(){
     let params = {
+      tag_id: this.lodash.map(this.tags, 'id'),
       products_per_page: this.limit,
       starting_product_id: (this.page + 1) * this.limit - this.limit
     };
@@ -37,6 +39,7 @@ export class PaginationsController {
 
   changeLimit(){
     let params = {
+      tag_id: this.lodash.map(this.tags, 'id'),
       products_per_page: this.limit,
       starting_product_id: this.page * this.limit - this.limit
     };
