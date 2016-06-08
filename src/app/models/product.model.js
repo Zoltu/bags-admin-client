@@ -7,9 +7,17 @@ export default function ($resource, baseParams) {
   };
 
   let model = $resource(
-    baseParams.apiUrl + 'products/:product_id/:subAction/:tag_id/:id/:action/:actionTwo/:actionThree/:actionFour/',
+    baseParams.apiUrl + 'products/:product_id/:subAction/:deleted_tag_id/:id/:action/:actionTwo/:actionThree/:actionFour/',
     {id: '@id', action: '@action', actionTwo: '@actionTwo'},
     {
+      query: {
+        params: {
+          subAction: 'by_tags',
+          products_per_page: 5,
+          // tag_id: '@tag_id'
+        },
+        isArray:true,
+      },
       save: {
         method: 'PUT',
         // params: params
@@ -63,7 +71,7 @@ export default function ($resource, baseParams) {
         method: 'DELETE',
         params: {
           product_id: '@product_id',
-          tag_id: '@tag_id',
+          tag_id: '@deleted_tag_id',
           subAction: 'tag'
         }
       },

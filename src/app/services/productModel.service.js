@@ -11,8 +11,8 @@ export class ProductModelService {
     this.collection = []
   }
 
-  getCollection(){
-    return this.Model.query().$promise
+  getCollection(params){
+    return this.Model.query(params).$promise
     .then((res)=>{
       angular.copy(res, this.collection);
       return this.collection;
@@ -98,9 +98,14 @@ export class ProductModelService {
   }
 
   removeTag(data){
+    data.deleted_tag_id = data.tag_id;
     return this.Model.deleteTag(data).$promise
     .then((response) => {
       return response;
     });
+
+
+
+    
   }
 }

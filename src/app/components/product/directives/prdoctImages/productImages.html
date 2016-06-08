@@ -1,0 +1,29 @@
+<md-table>
+  <md-table-container ng-show="vm.data.length">
+    <table md-table ng-model="vm.selected" md-progress="promise">
+
+      <div class="image-scroll">
+        <!--<div class="img-preview" ng-if="vm.show !== false">-->
+        <div class="img-preview" ng-if="vm.show !== false">
+          <div><img  ng-src="{{ vm.data[vm.show].large }}"></div>
+        </div>
+
+        <slick class="slider"
+          slider-data="vm.data"
+          template-id="testSlider"
+          slides-to-show=5
+          slides-to-scroll=3
+        ></slick>
+
+        <script type="text/ng-template" id="testSlider">
+          <div class="item-image" ng-repeat="item in  sliderData | orderBy: 'priority' track by $index">
+            <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
+              <div class="buttons" layout="column" layout-align="end center">
+              </div>
+            </div>
+          </div>
+        </script>
+      </div>
+    </table>
+  </md-table-container>
+</md-table>

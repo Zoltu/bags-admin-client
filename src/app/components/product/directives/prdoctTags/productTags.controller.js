@@ -12,7 +12,7 @@ export class ProductTagsController {
   $onInit() {
     this.collections = [];
     this.saveTags = angular.copy(this.tags);
-    this.data = this.tags || [];
+    this.data = angular.copy(this.tags) || [];
     this.addedTags = this.addedTags || [];
     this.removedTags = this.removedTags || [];
 
@@ -26,7 +26,7 @@ export class ProductTagsController {
   }
 
   getTags() {
-    this.tagModelService.getCollection()
+    this.tagModelService.getCollection({showCachedData: true})
     .then((res)=> {
       this.collections.tags = res;
       return this.collections.tags

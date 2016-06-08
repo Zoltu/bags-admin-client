@@ -48,9 +48,12 @@ export class ModalController {
     this.formData.tag_id = this.lodash.get(this.selected.tag, 'id');
 
     return this.productModelService.save(this.formData)
-    .then(this.saveImages.bind(this))
-    .then(this.saveUrls.bind(this))
+    // .then(this.saveImages.bind(this))
+    // .then(this.saveUrls.bind(this))
     .then(this.saveTags.bind(this))
+    // .then(this.removeImages.bind(this))
+    // .then(this.removeUrls.bind(this))
+    .then(this.removeTags.bind(this))
     .then((response) => {
       this.lodash.merge(this.prefillingData, response);
       // hide modal
@@ -59,9 +62,6 @@ export class ModalController {
 
       return response;
     })
-    // .then(this.removeImages.bind(this))
-    // .then(this.removeUrls.bind(this))
-    .then(this.removeTags.bind(this))
   }
 
   saveImages(res) {
@@ -125,34 +125,32 @@ export class ModalController {
   }
 
   saveTags(res) {
-    let pTags = [this.$q.when(res)];
-    angular.forEach(this.added.tags, (el)=> {
-      let data = {
-        product_id: res.id,
-        tag_id: el.id
-      };
-      let pTag = this.productModelService.saveTag(data);
-      pTags.push(pTag);
-    });
+    var ids = this.lodash.map(this.added.tags, 'id');
+    var data = {
+      product_id: res.id,
+      tag_ids: ids
+    };
 
-    return this.$q.all(pTags).then((res)=> {
-      return res[0];
-    });
+    return this.productModelService.saveTag(data);
   }
 
   removeTags(res) {
-    
     let pTags = [];
     angular.forEach(this.removed.tags, (el)=> {
       let data = {
         product_id: res.id,
         tag_id: el.id
       };
-      let pTag = this.productModelService.removeTag(data);
+      let pTag = this.productModelService.removeTag(data)
+      .then(()=>{
+        return this.lodash.remove(res.tags, {id: data.tag_id});
+      });
       pTags.unshift(pTag);
     });
 
-    return this.$q.all(pTags);
+    return this.$q.all(pTags).then(()=> {
+      return res;
+    });
   }
 
   close() {

@@ -12,7 +12,12 @@ export class TagModelService {
     this.collection = []
   }
 
-  getCollection(){
+  getCollection(params){
+    params = params || {};
+    if(params.showCachedData && this.collection.length){
+      return this.$q.when(this.collection);
+    }
+
     return this.Model.query().$promise
     .then((res)=> {
       res = res.map((el)=> {

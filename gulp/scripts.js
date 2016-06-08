@@ -23,6 +23,9 @@ function webpackWrapper(watch, test, callback) {
 
   if(watch || conf.params.createMaps) {
     webpackOptions.devtool = 'inline-source-map';
+  }
+
+  if(conf.params.createMaps){
     webpackOptions.plugins = webpack.plugins || [];
     webpackOptions.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
