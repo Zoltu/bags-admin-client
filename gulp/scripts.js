@@ -76,11 +76,3 @@ gulp.task('scripts', function () {
 gulp.task('scripts:watch', ['scripts'], function (callback) {
   return webpackWrapper(true, false, callback);
 });
-
-gulp.task('scripts:test', function () {
-  return webpackWrapper(false, true);
-});
-
-gulp.task('scripts:test-watch', ['scripts'], function (callback) {
-  return webpackWrapper(true, true, callback);
-});

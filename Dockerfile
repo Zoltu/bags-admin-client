@@ -1,13 +1,18 @@
-FROM zoltu/node-bower-gulp
+FROM zoltu/aspnetcore-gulp-bower
 
 COPY . /app
 WORKDIR /app
-RUN npm install
-RUN bower --allow-root install
-EXPOSE 3000
-EXPOSE 3001
+RUN npm install bufferutil \
+  && npm install utf-8-validate \
+  && npm install gulp-if-else \
+  && npm install \
+  && bower --allow-root install \
+  && gulp build:map \
+  && mkdir -p /app/server/client \
+  && mv /app/dist/* /app/server/client
 
-ENTRYPOINT ["gulp", "serve:dist:map"]
+WORKDIR /app/server
+RUN dotnet restore
 
-# docker build --tag="foo" .
-# docker run -P --name="bar" foo
+EXPOSE 80
+ENTRYPOINT ["dotnet", "run"]

@@ -43,9 +43,6 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe($.useref())
     .pipe(jsFilter)
-    .pipe(ifElse(!conf.params.createMaps, function () {
-      return $.uglify({ preserveComments: $.uglifySaveLicense }).on('error', conf.errorHandler('Uglify'));
-    }, null))
     .pipe($.rev())
     .pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
