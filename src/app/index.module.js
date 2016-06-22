@@ -17,7 +17,8 @@ import {
 
 // DECORATORS //
 import {
-  decorateSlickDirective
+  decorateSlickDirective,
+  decorateMdAutocomplete,
 } from './decorators';
 
 // SERVICES //
@@ -80,6 +81,7 @@ angular.module('bags-app', [
 
 // DECORATORS
 .config(decorateSlickDirective)
+.config(decorateMdAutocomplete)
 
 // SERVICES //
 .service('modalService', ModalService)
