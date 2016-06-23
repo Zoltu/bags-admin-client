@@ -22,7 +22,8 @@ export class ProductTagsController {
   }
 
   querySearch(criteria) {
-    return criteria ? this.$filter('fuzzyBy')(this.collections.tags, 'fullName', criteria) : [];
+    var tags = this.$filter('fuzzyBy')(this.collections.tags, 'fullName', criteria);
+    return tags;
   }
 
   getTags() {
