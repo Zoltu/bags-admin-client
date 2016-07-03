@@ -1,11 +1,12 @@
 FROM zoltu/aspnetcore-gulp-bower
 
-COPY . /app
+RUN mkdir /app
 WORKDIR /app
 RUN npm install bufferutil \
   && npm install utf-8-validate \
-  && npm install gulp-if-else \
-  && npm install \
+  && npm install gulp-if-else
+COPY . /app
+RUN npm install \
   && bower --allow-root install \
   && gulp build:map \
   && mkdir -p /app/server/client \
