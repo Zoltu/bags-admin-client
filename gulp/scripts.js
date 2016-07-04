@@ -27,19 +27,19 @@ function webpackWrapper(watch, test, callback) {
 
   if(conf.params.createMaps){
     webpackOptions.plugins = webpack.plugins || [];
-    webpackOptions.plugins.push(
-      new webpack.optimize.UglifyJsPlugin({
-        beautify: false,
-        mangle: {
-          compress: {
-            caseSensitive: true,
-            warnings: true,
-            drop_console: true,
-            unsafe: false
-          }
-        }
-      })
-    );
+    // webpackOptions.plugins.push(
+    //   new webpack.optimize.UglifyJsPlugin({
+    //     beautify: false,
+    //     mangle: {
+    //       compress: {
+    //         caseSensitive: true,
+    //         warnings: true,
+    //         drop_console: true,
+    //         unsafe: false
+    //       }
+    //     }
+    //   })
+    // );
   }
 
   var webpackChangeHandler = function(err, stats) {
