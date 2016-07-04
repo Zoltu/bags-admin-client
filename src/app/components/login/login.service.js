@@ -12,16 +12,14 @@ export class LoginService {
   }
 
   login() {
-    return this.$q((resolve)=> {
-      let auth2 = gapi.auth2.init({
-        client_id: this.clientId,
-        fetch_basic_profile: false,
-        scope: 'profile'
-      });
+    let auth2 = gapi.auth2.init({
+      client_id: this.clientId,
+      fetch_basic_profile: false,
+      scope: 'profile'
+    });
 
-      auth2.signIn().then((res) => {
-        resolve(res.getAuthResponse().id_token);
-      });
+    return auth2.signIn().then((res) => {
+      return res.getAuthResponse().id_token;
     });
   }
 }
