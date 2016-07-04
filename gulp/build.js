@@ -53,12 +53,12 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter.restore)
     .pipe($.revReplace())
     .pipe(htmlFilter)
-    .pipe($.htmlmin({
-      removeEmptyAttributes: true,
-      removeAttributeQuotes: true,
-      collapseBooleanAttributes: true,
-      collapseWhitespace: true
-    }))
+    // .pipe($.htmlmin({
+    //   removeEmptyAttributes: true,
+    //   removeAttributeQuotes: true,
+    //   collapseBooleanAttributes: true,
+    //   collapseWhitespace: true
+    // }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
