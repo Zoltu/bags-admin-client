@@ -2,6 +2,9 @@ export class LoginService {
   constructor($q, gapi) {
     'ngInject'
 
+    // load auth2
+    gapi.load('auth2');
+
     this.$q = $q;
     this.gapi = gapi;
     this.scopes = 'profile';
@@ -10,16 +13,14 @@ export class LoginService {
 
   login() {
     return this.$q((resolve)=> {
-      gapi.load('auth2', () => {
-        let auth2 = gapi.auth2.init({
-          client_id: this.clientId,
-          fetch_basic_profile: false,
-          scope: 'profile'
-        });
+      let auth2 = gapi.auth2.init({
+        client_id: this.clientId,
+        fetch_basic_profile: false,
+        scope: 'profile'
+      });
 
-        auth2.signIn().then((res) => {
-          resolve(res.getAuthResponse().id_token);
-        });
+      auth2.signIn().then((res) => {
+        resolve(res.getAuthResponse().id_token);
       });
     });
   }
