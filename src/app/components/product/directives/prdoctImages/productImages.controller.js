@@ -52,6 +52,7 @@ export class ProductImagesController {
     };
 
     this.url = this.editItem.url;
+    //this.url = angular.copy(this.editItem.url);
     this.showImagesForm = true;
     this.isAddingImage = false;
   }
@@ -60,6 +61,7 @@ export class ProductImagesController {
     if (!this.url) {
       return;
     }
+    this.editItem; debugger;
 
     this.data[this.editItem.index] = this.url;
     this.cancelUpdate();
