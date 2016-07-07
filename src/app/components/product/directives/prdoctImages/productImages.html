@@ -1,3 +1,33 @@
+<div class="edit-product-image" layout="column">
+  <div ng-if="!vm.showImagesForm" layout="right top">
+    <md-button class="md-raised md-primary" ng-click="vm.showImagesForm=true; vm.isAddingImage=true">Add image</md-button>
+  </div>
+  <div ng-if="vm.showImagesForm">
+    <div class="md-title">{{vm.isAddingImage ? 'Add' : 'Update'}} image</div>
+    <md-input-container>
+      <label>Large image url</label>
+      <input ng-model="vm.url.large">
+    </md-input-container>
+    <md-input-container>
+      <label>Medium image url</label>
+      <input ng-model="vm.url.medium">
+    </md-input-container>
+    <md-input-container>
+      <label>Small image url</label>
+      <input ng-model="vm.url.small">
+    </md-input-container>
+    <md-input-container>
+      <label>Priority</label>
+      <input ng-model="vm.url.priority" type="number" min="0" step="1">
+    </md-input-container>
+    <div>
+      <md-button class="md-raised md-primary" ng-click="vm.create()" ng-if="vm.isAddingImage">Add</md-button>
+      <md-button class="md-raised md-primary" ng-click="vm.update()" ng-if="!vm.isAddingImage">Update</md-button>
+      <md-button class="md-raised md-primary" ng-click="vm.cancelUpdate()">Cancel</md-button>
+    </div>
+  </div>
+</div>
+
 <md-table>
   <md-table-container ng-show="vm.data.length">
     <table md-table ng-model="vm.selected" md-progress="promise">
@@ -18,7 +48,13 @@
         <script type="text/ng-template" id="testSlider">
           <div class="item-image" ng-repeat="item in  sliderData | orderBy: 'priority' track by $index">
             <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
-              <div class="buttons" layout="column" layout-align="end center">
+              <div class="buttons" layout="row" layout-align="center start">
+                <md-button class="md-fab md-mini md-primary" aria-label="mode_edit" ng-click="$parent.$parent.vm.edit($index)">
+                  <md-icon class="material-icons step md-24 arr">mode_edit</md-icon>
+                </md-button>
+                <md-button class="md-fab md-mini md-primary" aria-label="delete" ng-click="$parent.$parent.vm.remove($index)">
+                  <md-icon class="material-icons step md-24">delete</md-icon>
+                </md-button>
               </div>
             </div>
           </div>
