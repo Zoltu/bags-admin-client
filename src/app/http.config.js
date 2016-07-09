@@ -4,7 +4,7 @@ export function httpConfig($httpProvider) {
   $httpProvider.interceptors.push(Interceptor);
 }
 
-function Interceptor($q, localStorageService) {
+function Interceptor($q, localStorageService, $injector) {
   'ngInject';
 
   return {
@@ -21,6 +21,10 @@ function Interceptor($q, localStorageService) {
       return response;
     },
     responseError: function (rejection) {
+      if(rejection.status == 401){
+        let loginService = $injector.get('loginService');
+        loginService.logout();
+      }
       return $q.reject(rejection);
     }
   };
