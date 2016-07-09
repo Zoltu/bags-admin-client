@@ -9,7 +9,7 @@ function Interceptor($q, localStorageService) {
 
   return {
     request: function (config) {
-      if (config.url.search(/\/api\//) + 1) {
+      if (config.url.search(/api/) + 1) {
         config.headers.Authorization = localStorageService.get('auth') ? 'Bearer ' + localStorageService.get('auth').token : '';
       }
       return config;
