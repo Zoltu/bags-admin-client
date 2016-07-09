@@ -1,17 +1,14 @@
 export class ProductImagesController {
 
-  constructor(lodash, $scope, $filter) {
+  constructor(lodash, $scope) {
     'ngInject'
 
     this.$scope = $scope;
-    this.$filter = $filter;
     this.lodash = lodash;
   }
 
   $onInit() {
     this.show = false;
-    this.showImagesForm = false;
-    this.isAddingImage = false;
     this.selected = [];
     this.saveUrls = angular.copy(this.urls);
     this.data = this.urls || [];
@@ -31,12 +28,8 @@ export class ProductImagesController {
     }
 
     this.data.push(this.url);
-    //sort array via priority
-    this.data = this.$filter('orderBy')(this.data, 'priority');
-
 
     delete this.url;
-    this.showImagesForm = false;
   }
 
   remove(index) {
@@ -52,8 +45,6 @@ export class ProductImagesController {
     };
 
     this.url = this.editItem.url;
-    this.showImagesForm = true;
-    this.isAddingImage = false;
   }
 
   update() {
@@ -62,13 +53,12 @@ export class ProductImagesController {
     }
 
     this.data[this.editItem.index] = this.url;
-    this.cancelUpdate();
+    this.cancelUpdate()
   }
 
   cancelUpdate() {
     delete this.editItem;
     delete this.url;
-    this.showImagesForm = false;
   }
 
   checkDifference(){

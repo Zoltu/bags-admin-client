@@ -54,7 +54,6 @@ md-table-container{
   bottom: 203px;
   padding: 3px;
   overflow: hidden;
-  z-index:200;
 
   > div {
     overflow: hidden;
@@ -64,15 +63,5 @@ md-table-container{
       height: 417px;
       margin:auto; display:block
     }
-  }
-}
-
-.edit-product-image{
-  .md-title{
-    color:#888;
-  }
-
-  .md-errors-spacer{
-    display:none;
   }
 }
