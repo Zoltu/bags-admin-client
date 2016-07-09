@@ -28,6 +28,9 @@ import {
   ProductModelService,
   TagModelService,
 } from './services';
+import {
+ LoginService
+} from './components/login/login.service';
 
 // // DIRECTIVES //
 import {
@@ -90,6 +93,7 @@ angular.module('bags-app', [
 .service('categoryModelService', CategoryModelService)
 .service('productModelService', ProductModelService)
 .service('tagModelService', TagModelService)
+.service('loginService', LoginService)
 
 // DIRECTIVES //
 .directive('acmeNavbar', NavbarDirective)

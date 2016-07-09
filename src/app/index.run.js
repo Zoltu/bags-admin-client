@@ -9,11 +9,9 @@ export function runBlock ($rootScope, loginService, localStorageService, $state)
 
       loginService.login()
       .then((res)=>{
-        localStorageService.set('auth', {token: res});
         $state.go(next.name);
-      }).catch((err)=>{
-        console.log('login error', res);
-      });
+        return res;
+      })
     }
   });
 

@@ -14,7 +14,7 @@ gulp.task('env:prod', function() {
 gulp.task('env:dev', function() {
   var json = JSON.stringify({
     'baseParams': {
-      apiUrl: 'https://zoltu-bags-middleware.azurewebsites.net/api/',
+      apiUrl: 'https://bags-api-test.zoltu.com/api/',
     }
   });
   return createConst(json);
@@ -23,7 +23,7 @@ gulp.task('env:dev', function() {
 gulp.task('env:local', function() {
   var json = JSON.stringify({
     'baseParams': {
-      apiUrl: 'https://zoltu-bags-middleware.azurewebsites.net/api/',
+      apiUrl: 'https://bags-api-test.zoltu.com/api/',
     }
   });
   return createConst(json);

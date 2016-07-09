@@ -4,12 +4,12 @@ export function httpConfig($httpProvider) {
   $httpProvider.interceptors.push(Interceptor);
 }
 
-function Interceptor($q, localStorageService) {
+function Interceptor($q, localStorageService, $injector) {
   'ngInject';
 
   return {
     request: function (config) {
-      if (config.url.search(/\/api\//) + 1) {
+      if (config.url.search(/api/) + 1) {
         config.headers.Authorization = localStorageService.get('auth') ? 'Bearer ' + localStorageService.get('auth').token : '';
       }
       return config;
@@ -21,6 +21,10 @@ function Interceptor($q, localStorageService) {
       return response;
     },
     responseError: function (rejection) {
+      if(rejection.status == 401){
+        let loginService = $injector.get('loginService');
+        loginService.logout();
+      }
       return $q.reject(rejection);
     }
   };
