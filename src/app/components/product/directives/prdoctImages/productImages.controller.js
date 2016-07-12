@@ -10,26 +10,30 @@ export class ProductImagesController {
   $onInit() {
     this.show = false;
     this.selected = [];
-    this.saveUrls = angular.copy(this.urls);
     this.data = this.urls || [];
-    this.addedUrls = this.addedUrls || [];
-    this.removedUrls = this.removedUrls || [];
-
-    this.$scope.$watchCollection("vm.data", this.watchData.bind(this));
   }
 
-  watchData(newval, oldval){
-    this.checkDifference();
+  populateImage(img){
+    return {
+      large: img.large || "http://placehold.it/500x250",
+      medium: img.medium || "http://placehold.it/250x125",
+      small: img.small || "http://placehold.it/125x60",
+      priority: img.priority || 0
+    }
   }
-
   create() {
-    if (!this.url) {
+    if (!this.image) {
       return;
     }
 
-    this.data.push(this.url);
+    this.image = this.populateImage(this.image)
+    this.data.push(this.image);
 
-    delete this.url;
+    angular.copy(
+      this.lodash.orderBy(this.data, ['priority'], ['asc']),
+      this.data
+    );
+    delete this.image;
   }
 
   remove(index) {
@@ -40,36 +44,29 @@ export class ProductImagesController {
 
   edit(index) {
     this.editItem = {
-      url: this.data[index],
+      data: angular.copy(this.data[index]),
       index: index
     };
 
-    this.url = this.editItem.url;
+    this.image = this.editItem.data;
   }
 
   update() {
-    if (!this.url) {
+    if (!this.image) {
       return;
     }
 
-    this.data[this.editItem.index] = this.url;
+    this.data[this.editItem.index] = this.image;
+    angular.copy(
+      this.lodash.orderBy(this.data, ['priority'], ['asc']),
+      this.data
+    );
+
     this.cancelUpdate()
   }
 
   cancelUpdate() {
     delete this.editItem;
-    delete this.url;
-  }
-
-  checkDifference(){
-    this.addedUrls = this.lodash.difference(this.data, this.saveUrls);
-    this.addedUrls = this.lodash.uniq(this.addedUrls);
-
-    this.removedUrls = this.lodash.difference(this.saveUrls, this.data);
-    this.removedUrls = this.lodash.uniq(this.removedUrls);
-  }
-
-  isImg(){
-    return this.type == 'img';
+    delete this.image;
   }
 }
