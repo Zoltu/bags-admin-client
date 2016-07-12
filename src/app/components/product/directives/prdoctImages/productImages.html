@@ -1,25 +1,55 @@
 <md-table>
 
   <ng-form name="vm.formSave">
+    <div layout="column">
+
+      <div layout="column" flex>
+        <md-input-container flex>
+          <label>Large Image Url</label>
+          <input name="large" type="url" ng-model="vm.image.large" placeholder="http://placehold.it/500x250">
+          <div ng-messages="vm.formSave.large.$error">
+            <div ng-message="url">Enter valid url.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Medium Image Url</label>
+          <input name="medium" type="url" ng-model="vm.image.medium" placeholder="http://placehold.it/250x125">
+          <div ng-messages="vm.formSave.medium.$error">
+            <div ng-message="url">Enter valid url.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Small Image Url</label>
+          <input name="small" type="url" ng-model="vm.image.small" placeholder="http://placehold.it/125x60">
+          <div ng-messages="vm.formSave.small.$error">
+            <div ng-message="url">Enter valid url.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container flex>
+          <label>Image Priority</label>
+          <input name="priority" type="number" ng-model="vm.image.priority" placeholder="0">
+        </md-input-container>
+
+      </div>
+
+
     <div layout="row" flex>
-      <md-input-container flex>
-        <label>{{ vm.label }}</label>
-        <input name="url" ng-model="vm.url" disabled>
-        <div ng-messages="vm.formSave.url.$error">
-          <div ng-message="url">Enter valid url.</div>
-        </div>
-      </md-input-container>
+
       <div flex="10" ng-if="!vm.editItem">
-        <md-button disabled class="md-raised" ng-click="vm.create()">Add</md-button>
+        <md-button class="md-raised" ng-click="vm.create()">Add</md-button>
       </div>
       <div flex="25" ng-if="!!vm.editItem" layout="row">
         <div>
-          <md-button disabled class="md-raised" ng-click="vm.update()">Save</md-button>
+          <md-button class="md-raised" ng-click="vm.update()">Save</md-button>
         </div>
         <div>
-          <md-button disabled class="md-raised" ng-click="vm.cancelUpdate()">Cancel</md-button>
+          <md-button class="md-raised" ng-click="vm.cancelUpdate()">Cancel</md-button>
         </div>
       </div>
+    </div>
     </div>
   </ng-form>
 
@@ -28,9 +58,8 @@
     <table md-table ng-model="vm.selected" md-progress="promise">
 
       <div class="image-scroll">
-        <!--<div class="img-preview" ng-if="vm.show !== false">-->
         <div class="img-preview" ng-if="vm.show !== false">
-          <div><img  ng-src="{{ vm.data[vm.show].large }}"></div>
+          <div><img  ng-src="{{ vm.show.large }}"></div>
         </div>
 
         <slick class="slider"
@@ -41,8 +70,8 @@
         ></slick>
 
         <script type="text/ng-template" id="testSlider">
-          <div class="item-image" ng-repeat="item in  sliderData | orderBy: 'priority' track by $index">
-            <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
+          <div class="item-image" ng-repeat="item in  sliderData track by $index">
+            <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = item" ng-mouseleave="$parent.$parent.vm.show = false">
               <div class="buttons" layout="column" layout-align="end center">
                 <md-button ng-click="parentScope.vm.edit($index)" aria-label="edit">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
