@@ -29,12 +29,12 @@ export class LoginService {
         })
       }, 600000);
 
-      return this.setToken(res);
+      return this.setToken(res.getAuthResponse());
     });
   }
 
   setToken(res){
-    let token = res.getAuthResponse().id_token;
+    let token = res.id_token;
     this.localStorageService.set('auth', {token: token});
     return token;
   }
