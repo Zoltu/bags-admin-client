@@ -1,4 +1,29 @@
 <md-table>
+
+  <ng-form name="vm.formSave">
+    <div layout="row" flex>
+      <md-input-container flex>
+        <label>{{ vm.label }}</label>
+        <input name="url" ng-model="vm.url" disabled>
+        <div ng-messages="vm.formSave.url.$error">
+          <div ng-message="url">Enter valid url.</div>
+        </div>
+      </md-input-container>
+      <div flex="10" ng-if="!vm.editItem">
+        <md-button disabled class="md-raised" ng-click="vm.create()">Add</md-button>
+      </div>
+      <div flex="25" ng-if="!!vm.editItem" layout="row">
+        <div>
+          <md-button disabled class="md-raised" ng-click="vm.update()">Save</md-button>
+        </div>
+        <div>
+          <md-button disabled class="md-raised" ng-click="vm.cancelUpdate()">Cancel</md-button>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+
+
   <md-table-container ng-show="vm.data.length">
     <table md-table ng-model="vm.selected" md-progress="promise">
 
@@ -19,6 +44,12 @@
           <div class="item-image" ng-repeat="item in  sliderData | orderBy: 'priority' track by $index">
             <div class="img" style="background: url('{{ item.large }}')" ng-mouseenter="$parent.$parent.vm.show = $index" ng-mouseleave="$parent.$parent.vm.show = false">
               <div class="buttons" layout="column" layout-align="end center">
+                <md-button ng-click="parentScope.vm.edit($index)" aria-label="edit">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </md-button>
+                <md-button ng-click="parentScope.vm.remove($index)" aria-label="remove">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </md-button>
               </div>
             </div>
           </div>
