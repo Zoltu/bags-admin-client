@@ -14,6 +14,7 @@ RUN npm install \
 
 WORKDIR /app/server
 RUN dotnet restore
+RUN dotnet build
 
 EXPOSE 80
 ENTRYPOINT ["dotnet", "run"]
