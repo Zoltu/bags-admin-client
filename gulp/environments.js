@@ -5,7 +5,7 @@ var b2v = require('buffer-to-vinyl');
 gulp.task('env:prod', function() {
   var json = JSON.stringify({
     'baseParams': {
-      apiUrl: 'https://bags-api.zoltu.com/api/',
+      apiUrl: 'https://api.bagcupid.com/api/',
     }
   });
   return createConst(json);
@@ -14,7 +14,7 @@ gulp.task('env:prod', function() {
 gulp.task('env:dev', function() {
   var json = JSON.stringify({
     'baseParams': {
-      apiUrl: 'https://bags-api-test.zoltu.com/api/',
+      apiUrl: 'https://api-test.bagcupid.com/api/',
     }
   });
   return createConst(json);
@@ -23,7 +23,7 @@ gulp.task('env:dev', function() {
 gulp.task('env:local', function() {
   var json = JSON.stringify({
     'baseParams': {
-      apiUrl: 'https://bags-api-test.zoltu.com/api/',
+      apiUrl: 'https://api-test.bagcupid.com/api/',
     }
   });
   return createConst(json);
